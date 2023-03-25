@@ -53,6 +53,10 @@ function App() {
 
    const contextValues = {
     onLoginSubmit,
+    userId: auth._id,
+    token: auth.accessToken,
+    userEmail: auth.email,
+    isAuthenticated: !!auth.accessToken,
     
 };
 

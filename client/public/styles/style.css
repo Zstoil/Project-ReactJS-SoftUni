@@ -15,14 +15,13 @@ html,body {
     background: rgba(236, 183, 245, 0.1);
     height: 5.714rem; /*80px*/
     align-items: center;
-    margin: 0;
-    padding: 0;
     box-shadow: 0px 2px 6px rgba(122, 109, 115, 0.55);
-    top: 0;
-    left: 0;
-    right: 0;
     transition: all .4s;
    
+}
+
+.loginUser{
+    margin-right: 20px;
 }
 
 .main-header.solid {
@@ -39,7 +38,7 @@ a {
     list-style: none;
     margin: 0;
     padding: 0;
-    margin-left: 54.142rem;
+    /* margin-left: 54.142rem; */
 }
 
 .menu li {
