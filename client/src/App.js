@@ -12,6 +12,7 @@ import { Catalog } from "./Components/Catalog/Catalog";
 import { Details } from "./Components/Details/Details";
 import { Login } from "./Components/Login/Login";
 import { Register } from "./Components/Register/Register";
+import { Logout } from "./Components/Logout/Logout";
 
 function App() {
 
@@ -75,9 +76,18 @@ function App() {
   }
    };
 
+   const onLogout = async () => {
+
+  //  await  authService.logout()
+
+    setAuth({});
+
+   };
+
    const contextValues = {
     onLoginSubmit,
     onRegisterSubmit,
+    onLogout,
     userId: auth._id,
     token: auth.accessToken,
     userEmail: auth.email,
@@ -98,6 +108,7 @@ function App() {
           <Route path="/catalog/:carId" element={<Details/>}/>
           <Route path="/login" element={<Login/>}/>
           <Route path="/register" element={<Register/>}/>
+          <Route path="/logout" element={<Logout/>}/>
     </Routes>
      </main>
      <Footer/>
