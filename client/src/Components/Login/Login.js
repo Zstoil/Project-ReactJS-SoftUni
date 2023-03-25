@@ -6,7 +6,7 @@ import { useForm } from '../../hooks/useForm';
 
 export const Login = () => {
 
-    const { onLoginSubmit, errorLogin, isError } = useContext(AuthContext);
+    const { onLoginSubmit, error, isError } = useContext(AuthContext);
     
     const{ values, changeHandler, onSubmit } = useForm({
         email: '',
@@ -19,7 +19,7 @@ export const Login = () => {
 
             {isError && (
                 <div className='loginError'>
-            <p>{errorLogin}</p>
+            <p>{error}</p>
             </div>
             )}
 

@@ -19,7 +19,7 @@ function App() {
 
   const[cars,setCars] = useState([]);
   const[auth,setAuth] = useState({});
-  const[errorLogin,setErrorLogin] = useState();
+  const[error,setError] = useState();
 
   useEffect(() =>{
     carService.getAll()
@@ -50,18 +50,40 @@ function App() {
   } catch (error) {
     const result = await Object.values(error)[1];
 
-    setErrorLogin(result);
+    setError(result);
+  }
+   };
+
+   const onRegisterSubmit = async (data) => {
+
+    const{repeatedPassword,...registerData} = data;
+
+    if(repeatedPassword !== registerData.password){
+      return;
+    }
+
+    try {
+      const result = await authService.register(registerData);
+
+      setAuth(result);
+
+      navigate('/');
+  } catch (error) {
+    const result = await Object.values(error)[1];
+
+    setError(result);
   }
    };
 
    const contextValues = {
     onLoginSubmit,
+    onRegisterSubmit,
     userId: auth._id,
     token: auth.accessToken,
     userEmail: auth.email,
     isAuthenticated: !!auth.accessToken,
-    errorLogin,
-    isError: !!errorLogin,
+    error,
+    isError: !!error,
 };
 
   return (
