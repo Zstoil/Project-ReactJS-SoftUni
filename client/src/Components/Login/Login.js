@@ -1,17 +1,28 @@
-import { Link } from 'react-router-dom'
+import { useContext } from 'react';
+import { Link } from 'react-router-dom';
+
+import { AuthContext } from '../../contexts/AuthContext';
+import { useForm } from '../../hooks/useForm';
 
 export const Login = () => {
+
+    const { onLoginSubmit } = useContext(AuthContext);
+    const{ values, changeHandler, onSubmit } = useForm({
+        email: '',
+        password: '',
+    }, onLoginSubmit);
+
     return (
         <section className="login-page">
-            <form id="login">
+            <form id="login" method='POST' onSubmit={onSubmit}>
 
                 <div className="login-container">
                     <h2>Login</h2>
                     <label htmlFor="email">Email:</label>
-                    <input type="email" id="email" name="email" placeholder="test@gmail.com"/>
+                    <input type="email" id="email" name="email" value={values.email} onChange={changeHandler} placeholder="test@gmail.com"/>
 
                     <label htmlFor="password">Password:</label>
-                    <input type="password" id="password" name="password"/>
+                    <input type="password" id="password" name="password" value={values.password} onChange={changeHandler}/>
                     <input type="submit" className="btn submit" value="Login"/>
                     <p className="field">
                         <span>If you don't have profile click <Link to="/register">here</Link></span>

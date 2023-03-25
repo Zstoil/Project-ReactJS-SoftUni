@@ -1,8 +1,9 @@
 import { Routes, Route, useNavigate } from "react-router-dom";
 import { useState, useEffect } from 'react';
+import { AuthContext } from "./contexts/AuthContext";
 
 import * as carService from './services/carService';
-
+import * as authService from './services/authService';
 import { Footer } from './Components/Footer/Footer';
 import { Header } from './Components/Header/Header';
 import { Home } from './Components/Home/Home';
@@ -17,6 +18,7 @@ function App() {
   const navigate = useNavigate();
 
   const[cars,setCars] = useState([]);
+  const[auth,setAuth] = useState({});
 
   useEffect(() =>{
     carService.getAll()
@@ -36,8 +38,27 @@ function App() {
      navigate("/catalog");
    }
 
+   const onLoginSubmit = async (data) => {
+
+    try {
+      const result = await authService.login(data);
+
+      setAuth(result);
+
+      navigate('/');
+  } catch (error) {
+      console.log(`Error: ${Object.values(error)[1]}`);
+  }
+   };
+
+   const contextValues = {
+    onLoginSubmit,
+    
+};
+
   return (
-    <>
+  <>
+    <AuthContext.Provider value={contextValues}>
      <Header/>
      <main id="main-content">
      <Routes>
@@ -50,7 +71,8 @@ function App() {
     </Routes>
      </main>
      <Footer/>
-    </>
+    </AuthContext.Provider>
+  </>
   );
 }
 
