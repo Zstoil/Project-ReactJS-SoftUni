@@ -19,6 +19,7 @@ function App() {
 
   const[cars,setCars] = useState([]);
   const[auth,setAuth] = useState({});
+  const[errorLogin,setErrorLogin] = useState();
 
   useEffect(() =>{
     carService.getAll()
@@ -47,7 +48,9 @@ function App() {
 
       navigate('/');
   } catch (error) {
-      console.log(`Error: ${Object.values(error)[1]}`);
+    const result = await Object.values(error)[1];
+
+    setErrorLogin(result);
   }
    };
 
@@ -57,7 +60,8 @@ function App() {
     token: auth.accessToken,
     userEmail: auth.email,
     isAuthenticated: !!auth.accessToken,
-    
+    errorLogin,
+    isError: !!errorLogin,
 };
 
   return (

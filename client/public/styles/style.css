@@ -322,6 +322,21 @@ h2{
     padding: 5px;
 }
 
+.loginError{
+    background: rgb(223, 221, 220);
+    width: 350px;
+    height: 100px;
+    margin-left: auto;
+    text-align: center;
+    font-size: 20px;
+    font-family: sans-serif;
+    margin-right: 50px;
+    margin-top: 80px;
+    padding-top: 30px;
+    box-shadow: 0px 0px 30px 0px #cc1d49, 0px 3px 24px #8995aa;
+    border-radius: 10px;
+}
+
  /* Register */
 
 .register-container{
