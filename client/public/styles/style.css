@@ -21,7 +21,11 @@ html,body {
 }
 
 .loginUser{
-    margin-right: 20px;
+    margin-right: 30px;
+    font-size: 18px;
+    box-shadow: 0px 2px 10px 9px rgba(214, 214, 214, 0.55);
+    border-radius: 10px;
+    padding: 10px;
 }
 
 .main-header.solid {
