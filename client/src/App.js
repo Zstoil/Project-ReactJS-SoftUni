@@ -25,7 +25,7 @@ function App() {
   const[auth,setAuth] = useState({});
   const[error,setError] = useState();
   const carService = carServiceFactory(auth.accessToken);
-  const authService = authServiceFactory(auth.accessToken)
+  const authService = authServiceFactory(auth.accessToken);
 
   useEffect(() =>{
     carService.getAll()
@@ -75,8 +75,12 @@ function App() {
 
     const{repeatedPassword,...registerData} = data;
 
+    if(!repeatedPassword){
+      return setError('Repeated password is required!');
+    }
+
     if(repeatedPassword !== registerData.password){
-      return;
+      return setError('Password not match!');
     }
 
     try {
