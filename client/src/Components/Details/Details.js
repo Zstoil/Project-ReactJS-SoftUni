@@ -53,7 +53,7 @@ export const Details = () => {
                 {isOwner && (
                     <div>
                     <Link to={`/edit`} className="details-btn-edit">Edit</Link>
-                    <button className="button" onClick={onDeleteClick}>Delete</button>
+                    <button className="details-btn-del" onClick={onDeleteClick}>Delete</button>
                     </div>
                 )}
                 
