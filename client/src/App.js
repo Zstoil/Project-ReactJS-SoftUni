@@ -14,6 +14,7 @@ import { Login } from "./Components/Login/Login";
 import { Register } from "./Components/Register/Register";
 import { Logout } from "./Components/Logout/Logout";
 
+
 function App() {
 
   const navigate = useNavigate();
@@ -30,8 +31,8 @@ function App() {
   },[]);
 
   const token = auth.accessToken;
- 
-  const onCreateGameSubmit = async (data) => {
+
+  const onCreateCarsSubmit = async (data) => {
 
     const newCar = await carService.create(data,token);
  
@@ -80,16 +81,17 @@ function App() {
 
    const onLogout = async () => {
 
-  //  await  authService.logout()
+     await  authService.logout();
 
-    setAuth({});
-
+     setAuth({});
+    
    };
 
    const contextValues = {
     onLoginSubmit,
     onRegisterSubmit,
     onLogout,
+    onCreateCarsSubmit,
     userId: auth._id,
     token: auth.accessToken,
     userEmail: auth.email,
@@ -105,7 +107,7 @@ function App() {
      <main id="main-content">
      <Routes>
           <Route path='/' element={<Home/>} />
-          <Route path='/create' element={<Create onCreateGameSubmit={onCreateGameSubmit}/>} />
+          <Route path='/create' element={<Create/>} />
           <Route path='/catalog' element={<Catalog cars={cars}/>} />
           <Route path="/catalog/:carId" element={<Details/>}/>
           <Route path="/login" element={<Login/>}/>

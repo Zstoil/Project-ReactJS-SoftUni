@@ -10,8 +10,8 @@ export const getAll = async () => {
     return cars;
 };
 
-export const create = async (carData,token) => {
-    const result = await request.post(baseUrl,carData,token);
+export const create = async (carData, token) => {
+    const result = await request.post(baseUrl, carData, token);
 
     return result;
 };

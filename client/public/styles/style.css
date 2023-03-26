@@ -107,12 +107,12 @@ h1{
 .button {
     display: inline-block;
     color: black;
-    background: linear-gradient(127.12deg, #ffffff 31.69%, #b3b6b8 73.96%);
-    padding: 16px 60px;
+    background: linear-gradient(223deg, #58779ef0 31.69%, #b3b6b8 73.96%);
+    padding: 16px 50px;
     box-shadow: 0px 2px 6px rgba(214, 214, 214, 0.55);
     border-radius: 0.714rem;/*10px*/
     transition: transform .7s;
-    margin-top: 170px;
+    margin-top: 90px;
 }
 
 .button:hover {

@@ -34,8 +34,8 @@ export const Details = () => {
                 </div>
                 <p>Model:{car.model}</p>
                 <p>Type:{car.type}</p>
-                <p>Kilometers:{car.kilometers}km</p>
-                <p>Price:{car.price}</p>
+                <p>Kilometers:{car.kilometers} km</p>
+                <p>Price:{car.price} &#x20AC;</p>
                 <p>Description:{car.description}</p>
                 <Link to={`/edit`} className="details-btn-edit">Edit</Link>
                 <Link to={`/delete`} className="details-btn-del">Delete</Link>
