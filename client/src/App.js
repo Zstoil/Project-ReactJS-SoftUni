@@ -1,9 +1,10 @@
 import { Routes, Route, useNavigate } from "react-router-dom";
 import { useState, useEffect } from 'react';
-import { AuthContext } from "./contexts/AuthContext";
 
-import * as carService from './services/carService';
-import * as authService from './services/authService';
+import { AuthContext } from "./contexts/AuthContext";
+import { carServiceFactory } from './services/carService';
+import { authServiceFactory } from './services/authService';
+
 import { Footer } from './Components/Footer/Footer';
 import { Header } from './Components/Header/Header';
 import { Home } from './Components/Home/Home';
@@ -22,6 +23,8 @@ function App() {
   const[cars,setCars] = useState([]);
   const[auth,setAuth] = useState({});
   const[error,setError] = useState();
+  const carService = carServiceFactory(auth.accessToken);
+  const authService = authServiceFactory(auth.accessToken)
 
   useEffect(() =>{
     carService.getAll()
@@ -30,11 +33,10 @@ function App() {
       })
   },[]);
 
-  const token = auth.accessToken;
 
   const onCreateCarsSubmit = async (data) => {
 
-    const newCar = await carService.create(data,token);
+    const newCar = await carService.create(data);
  
      //set new game in catalog
      setCars(state => [...state, newCar]);
@@ -80,12 +82,11 @@ function App() {
    };
 
    const onLogout = async () => {
+   //await authService.logout();
 
-    //  await  authService.logout();
+    setAuth({});
+};
 
-     setAuth({});
-    
-   };
 
    const contextValues = {
     onLoginSubmit,

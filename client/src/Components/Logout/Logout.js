@@ -12,7 +12,6 @@ export const Logout = () => {
     },[onLogout])
     
 
-    return(
-        <Navigate to={'/'}/>
-    );
-} 
+    return <Navigate to={'/'}/>
+    
+};

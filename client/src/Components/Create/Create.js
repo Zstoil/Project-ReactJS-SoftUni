@@ -45,7 +45,7 @@ export const Create = () => {
 
             <label htmlFor="description">Description:</label>
             <textarea name="description" id="description" value={values.description} onChange={changeHandler}></textarea>
-            <input ClassName="btn submit" type="submit" value="Create Car Ad" />
+            <input className="btn submit" type="submit" value="Create Car Ad" />
         </form>
     </div>
     </section>

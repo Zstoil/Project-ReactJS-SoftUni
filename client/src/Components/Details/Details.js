@@ -1,13 +1,17 @@
-import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom'
-import { Link } from 'react-router-dom';
-import * as carService from '../../services/carService';
+import { useEffect, useState, useContext } from 'react';
+import { useParams, useNavigate, Link } from 'react-router-dom'
 
+import {carServiceFactory} from '../../services/carService';
+import { useService } from '../../hooks/useService';
+import { AuthContext } from '../../contexts/AuthContext';
 
 export const Details = () => {
 
+    const {userId} = useContext(AuthContext);
     const { carId } = useParams();
+    const navigate = useNavigate();
     const [car, setCar] = useState({});
+    const carService = useService(carServiceFactory);
 
     useEffect(() => {
         carService.getOne(carId)
@@ -24,6 +28,15 @@ export const Details = () => {
             setLike(like + (isLike ? -1 : 1));
             setIsLike(!isLike);
         };
+        const isOwner = car._ownerId === userId;
+        
+        const onDeleteClick = async () => {
+            await carService.removeCar(car._id);
+    
+            // TODO: delete from state
+    
+            navigate('/catalog');
+        };
 
     return (
         <div className='details'>
@@ -37,8 +50,13 @@ export const Details = () => {
                 <p>Kilometers:{car.kilometers} km</p>
                 <p>Price:{car.price} &#x20AC;</p>
                 <p>Description:{car.description}</p>
-                <Link to={`/edit`} className="details-btn-edit">Edit</Link>
-                <Link to={`/delete`} className="details-btn-del">Delete</Link>
+                {isOwner && (
+                    <div>
+                    <Link to={`/edit`} className="details-btn-edit">Edit</Link>
+                    <button className="button" onClick={onDeleteClick}>Delete</button>
+                    </div>
+                )}
+                
 
                 {/* like button */}
                 <button
