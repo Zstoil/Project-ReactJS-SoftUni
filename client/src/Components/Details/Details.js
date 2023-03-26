@@ -22,12 +22,13 @@ export const Details = () => {
 
 
         // like button
-    const [like, setLike] = useState(1),
-          [isLike, setIsLike] = useState(false),
-        onLikeButtonClick = () => {
-            setLike(like + (isLike ? -1 : 1));
-            setIsLike(!isLike);
-        };
+    // const [like, setLike] = useState(1),
+    //       [isLike, setIsLike] = useState(false),
+    //     onLikeButtonClick = () => {
+    //         setLike(like + (isLike ? -1 : 1));
+    //         setIsLike(!isLike);
+    //     };
+
         const isOwner = car._ownerId === userId;
         
         const onDeleteClick = async () => {
@@ -52,19 +53,19 @@ export const Details = () => {
                 <p>Description:{car.description}</p>
                 {isOwner && (
                     <div>
-                    <Link to={`/edit`} className="details-btn-edit">Edit</Link>
+                    <Link to={`/catalog/${car._id}/edit`} className="details-btn-edit">Edit</Link>
                     <button className="details-btn-del" onClick={onDeleteClick}>Delete</button>
                     </div>
                 )}
                 
 
                 {/* like button */}
-                <button
+                {/* <button
                     className={"like-button " + (isLike ? "liked" : "")}
                     onClick={onLikeButtonClick}
                 >
                     {"Like"}  {like}
-                </button>
+                </button> */}
             </div>
         </div>
     );

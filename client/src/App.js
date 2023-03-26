@@ -14,6 +14,7 @@ import { Details } from "./Components/Details/Details";
 import { Login } from "./Components/Login/Login";
 import { Register } from "./Components/Register/Register";
 import { Logout } from "./Components/Logout/Logout";
+import { EditAd } from "./Components/EditAd/EditAd";
 
 
 function App() {
@@ -43,6 +44,16 @@ function App() {
  
      //redirect  to catalog
      navigate("/catalog");
+   }
+
+   const onEditCarSubmit = async (values) => {
+
+      const result = await carService.edit(values._id,values);
+
+      // set state 
+      setCars(state => state.map(x => x._id === values._id ? result : x))
+
+      navigate(`/catalog/${values._id}`);
    }
 
    const onLoginSubmit = async (data) => {
@@ -82,7 +93,7 @@ function App() {
    };
 
    const onLogout = async () => {
-    
+
    await authService.logout();
 
     setAuth({});
@@ -94,6 +105,7 @@ function App() {
     onRegisterSubmit,
     onLogout,
     onCreateCarsSubmit,
+    onEditCarSubmit,
     userId: auth._id,
     token: auth.accessToken,
     userEmail: auth.email,
@@ -112,9 +124,11 @@ function App() {
           <Route path='/create' element={<Create/>} />
           <Route path='/catalog' element={<Catalog cars={cars}/>} />
           <Route path="/catalog/:carId" element={<Details/>}/>
+          <Route path="/catalog/:carId/edit" element={<EditAd/>}/>
           <Route path="/login" element={<Login/>}/>
           <Route path="/register" element={<Register/>}/>
           <Route path="/logout" element={<Logout/>}/>
+          
     </Routes>
      </main>
      <Footer/>

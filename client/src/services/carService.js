@@ -28,12 +28,15 @@ export const carServiceFactory = (token) => {
         return result;
     };
 
+    const edit = (carId,data) => request.put(`${baseUrl}/${carId}`,data);
+
     const removeCar = (carId) => request.delete(`${baseUrl}/${carId}`)
 
 
     return {
         getAll,
         create,
+        edit,
         getOne,
         removeCar,
     };
