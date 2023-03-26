@@ -1,4 +1,4 @@
-const request = async (method, url,data) => {
+const request = async (method, url, data, token) => {
 
     const options = {};
 
@@ -12,20 +12,26 @@ const request = async (method, url,data) => {
 
             options.body = JSON.stringify(data);
         }
-    }
+    };
 
+    if(token){
+        options.headers = {
+            ...options.headers,
+            "X-Authorization": token
+        }
+    };
 
     const response = await fetch(url,options)
 
     if (response.status === 204) {
         return {};
-    }
+    };
 
     const result = await response.json();
 
     if (!response.ok) {
         throw result;
-    }
+    };
 
     return result;
 }

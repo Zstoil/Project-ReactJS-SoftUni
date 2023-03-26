@@ -29,9 +29,11 @@ function App() {
       })
   },[]);
 
+  const token = auth.accessToken;
+ 
   const onCreateGameSubmit = async (data) => {
 
-    const newCar = await carService.create(data);
+    const newCar = await carService.create(data,token);
  
      //set new game in catalog
      setCars(state => [...state, newCar]);
