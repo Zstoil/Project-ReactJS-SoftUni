@@ -22,12 +22,12 @@ export const Details = () => {
 
 
         // like button
-    // const [like, setLike] = useState(1),
-    //       [isLike, setIsLike] = useState(false),
-    //     onLikeButtonClick = () => {
-    //         setLike(like + (isLike ? -1 : 1));
-    //         setIsLike(!isLike);
-    //     };
+    const [like, setLike] = useState(1),
+          [isLike, setIsLike] = useState(false),
+        onLikeButtonClick = () => {
+            setLike(like + (isLike ? -1 : 1));
+            setIsLike(!isLike);
+        };
 
         const isOwner = car._ownerId === userId;
         
@@ -60,12 +60,12 @@ export const Details = () => {
                 
 
                 {/* like button */}
-                {/* <button
+                <button
                     className={"like-button " + (isLike ? "liked" : "")}
                     onClick={onLikeButtonClick}
                 >
                     {"Like"}  {like}
-                </button> */}
+                </button>
             </div>
         </div>
     );
