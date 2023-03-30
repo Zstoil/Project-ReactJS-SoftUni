@@ -5,7 +5,7 @@ import { AuthContext } from '../../contexts/AuthContext';
 
 export const Header = () => {
 
-    const { isAuthenticated, userEmail } = useContext(AuthContext);
+    const { isAuthenticated, userEmail,userName } = useContext(AuthContext);
     
     return (
         <header>
@@ -31,7 +31,7 @@ export const Header = () => {
                 </nav>
                 {isAuthenticated && (
                     <div className='loginUser'>
-                        <span>{userEmail}</span>
+                        <span>{userName}</span>
                     </div>
                 )}
             </div>

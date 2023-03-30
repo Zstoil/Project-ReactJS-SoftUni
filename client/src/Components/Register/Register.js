@@ -8,6 +8,7 @@ export const Register = () => {
 
     const { onRegisterSubmit, error, isError } = useContext(AuthContext);
     const { values, changeHandler, onSubmit } = useForm({
+        userName: '',
         email: '',
         password: '',
         repeatedPassword: '',
@@ -26,6 +27,10 @@ export const Register = () => {
 
                 <div className="register-container">
                     <h2>Register</h2>
+
+                    <label htmlFor="userName">User name:</label>
+                    <input type="userName" id="userName" name="userName" placeholder="userName" value={values.userName} onChange={changeHandler} />
+                    
                     <label htmlFor="email">Email:</label>
                     <input type="email" id="reg-email" name="email" placeholder="test@gmail.com" value={values.email} onChange={changeHandler} />
 
@@ -37,7 +42,7 @@ export const Register = () => {
 
                     <input type="submit" className="btn submit" value="Register" />
                     <p className="field">
-                        <span>If you already have profile click <Link to="/login">here</Link></span>
+                        <span>Already have account? <Link to="/login">login</Link></span>
                     </p>
                 </div>
             </form>

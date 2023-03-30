@@ -34,7 +34,7 @@ export const Login = () => {
                     <input type="password" id="password" name="password" value={values.password} onChange={changeHandler}/>
                     <input type="submit" className="btn submit" value="Login"/>
                     <p className="field">
-                        <span>If you don't have profile click <Link to="/register">here</Link></span>
+                        <span>Not registered? <Link to="/register">Create on account</Link></span>
                     </p>  
                 </div>
             </form>

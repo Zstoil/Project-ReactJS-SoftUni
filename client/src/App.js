@@ -113,6 +113,7 @@ function App() {
     userId: auth._id,
     token: auth.accessToken,
     userEmail: auth.email,
+    userName: auth.userName,
     isAuthenticated: !!auth.accessToken,
     error,
     isError: !!error,

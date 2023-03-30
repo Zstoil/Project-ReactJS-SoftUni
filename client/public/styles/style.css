@@ -1,4 +1,6 @@
 
+
+
 html,body {
     margin: 0;
     font-family: sans-serif;
@@ -128,7 +130,7 @@ h1{
  }
  
  /* Create */
- input[type=text], select, textarea {
+ #create input[type=text], select, textarea {
     width: 100%;
     padding: 12px;
     border: 1px solid #ccc;
@@ -199,6 +201,7 @@ h2{
     text-align: center;
     font-size: 40px;
 }
+
 
 .car{
     border-radius: 10px;
@@ -286,38 +289,50 @@ h2{
     margin-bottom: 100px;
     width: 500px;
     border-radius: 8px;
-    background: #97969c;
     box-shadow: 0px 0px 30px 0px #c6d1db, 0px 3px 24px #8995aa;
+    background: linear-gradient(84deg, #2c578eb3 31.69%, #707578 73.96%);
     padding: 20px;
   }
 
+  .login-container h2{
+    font-family: 'Roboto', sans-serif;
+  }
+
   .login-container input[type=submit]{
+    display: inline;
     background: linear-gradient(127.12deg, #ffffff 4.69%, #b3b6b8 73.96%);
     color: rgb(0, 0, 0);
     text-align: center;
-    font-size: 15px;
-    width: 200px;
-    margin-top: 50px;
-    margin-left: 150px;
-    margin-bottom: 30px;
-    padding: 12px 20px;
+    font-size: 19px;
+    margin-top: 20px;
+    margin-left: 141px;
+    margin-bottom: 20px;
+    padding: 12px 85px;
     border: none;
-    border-radius: 4px;
+    border-radius: 8px;
     cursor: pointer;
   }
 
   .login-container label{
+    margin-left: 122px;
     font-size: 18px;
     
   }
 
-  .login-container input{
-    background: #fffbdb;
+  .login-container #email,#password{
+    margin: 0 auto;
+    display: block;
+    width: 250px;
+    height: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    padding: 10px;
+    border-color: #ffffff;
   }
 
   .field>span {
     font-size: 18px;
-    bottom: 17px;
+    bottom: 27px;
     right: 10px;
     text-decoration: none;
     color: black;
@@ -349,17 +364,24 @@ h2{
     margin-bottom: 100px;
     width: 500px;
     border-radius: 8px;
-    background: #97969c;
+    background: linear-gradient(84deg, #2c578eb3 31.69%, #707578 73.96%);
     box-shadow: 0px 0px 30px 0px #c6d1db, 0px 3px 24px #8995aa;
     padding: 20px;
 }
 
- .register-container #reg-email ,#reg-password ,#reg-repeated-password{
+.register-container h2{
+    font-family: 'Roboto', sans-serif;
+}
+
+ .register-container #userName, #reg-email ,#reg-password ,#reg-repeated-password{
     margin: 0 auto;
     display: block;
     width: 250px;
     height: 20px;
     margin-bottom: 20px;
+    border-radius: 10px;
+    padding: 10px;
+    border-color: #ffffff;
     
 } 
 
@@ -369,18 +391,17 @@ h2{
 }
 
 .register-container input[type=submit]{
-    
     display: inline;
     background: linear-gradient(127.12deg, #ffffff 4.69%, #b3b6b8 73.96%);
     color: rgb(0, 0, 0);
     text-align: center;
     font-size: 15px;
     margin-top: 20px;
-    margin-left: 135px;
+    margin-left: 138px;
     margin-bottom: 20px;
     padding: 12px 85px;
     border: none;
-    border-radius: 4px;
+    border-radius: 8px;
     cursor: pointer;
   }
 
