@@ -1,7 +1,7 @@
 import { useEffect, useState, useContext } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom'
 
-import {carServiceFactory} from '../../services/carService';
+import * as carService from '../../services/carService';
 import { useService } from '../../hooks/useService';
 import { AuthContext } from '../../contexts/AuthContext';
 
@@ -11,7 +11,6 @@ export const Details = () => {
     const { carId } = useParams();
     const navigate = useNavigate();
     const [car, setCar] = useState({});
-    const carService = useService(carServiceFactory);
 
     useEffect(() => {
         carService.getOne(carId)

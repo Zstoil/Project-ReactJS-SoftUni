@@ -2,8 +2,8 @@ import { Routes, Route, useNavigate } from "react-router-dom";
 import { useState, useEffect } from 'react';
 
 import { AuthContext } from "./contexts/AuthContext";
-import { carServiceFactory } from './services/carService';
-import { authServiceFactory } from './services/authService';
+import * as carService from './services/carService';
+import * as authService from './services/authService';
 import { useLocalStorage } from "./hooks/useLocalStorage";
 
 import { Footer } from './Components/Footer/Footer';
@@ -25,8 +25,7 @@ function App() {
   const[cars,setCars] = useState([]);
   const[auth,setAuth] = useLocalStorage('auth',{})
   const[error,setError] = useState();
-  const carService = carServiceFactory(auth.accessToken);
-  const authService = authServiceFactory(auth.accessToken);
+  
 
   useEffect(() =>{
     carService.getAll()

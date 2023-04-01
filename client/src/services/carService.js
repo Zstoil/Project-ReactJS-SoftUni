@@ -1,13 +1,9 @@
-import { requestFactory } from './requester';
+import * as request from './requester';
 
 const baseUrl = 'http://localhost:3030/data/cars';
 
 
-export const carServiceFactory = (token) => {
-
-    const request = requestFactory(token);
-
-    const getAll = async () => {
+  export  const getAll = async () => {
         const result = await request.get(baseUrl);
 
         const cars = Object.values(result);
@@ -15,30 +11,23 @@ export const carServiceFactory = (token) => {
         return cars;
     };
 
-    const create = async (carData) => {
+    export  const create = async (carData) => {
         const result = await request.post(baseUrl, carData);
 
         return result;
     };
 
-    const getOne = async (carId) => {
+    export  const getOne = async (carId) => {
 
         const result = await request.get(`${baseUrl}/${carId}`);
 
         return result;
     };
 
-    const edit = (carId,data) => request.put(`${baseUrl}/${carId}`,data);
+    export  const edit = (carId,data) => request.put(`${baseUrl}/${carId}`,data);
 
-    const removeCar = (carId) => request.delete(`${baseUrl}/${carId}`)
+    export  const removeCar = (carId) => request.del(`${baseUrl}/${carId}`)
 
 
-    return {
-        getAll,
-        create,
-        edit,
-        getOne,
-        removeCar,
-    };
+    
 
-};

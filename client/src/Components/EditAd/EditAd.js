@@ -3,14 +3,14 @@ import { useParams } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthContext';
 import { useForm } from '../../hooks/useForm';
 
-import { useService } from '../../hooks/useService';
-import { carServiceFactory } from '../../services/carService';
+// import { useService } from '../../hooks/useService';
+import * as carService from '../../services/carService';
 
 export const EditAd = () => {
 
     const { carId } = useParams();
 
-    const carService = useService(carServiceFactory);
+    // const carService = useService(carServiceFactory);
 
     const { onEditCarSubmit } = useContext(AuthContext);
 
