@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { AuthContext } from "./contexts/AuthContext";
 import { carServiceFactory } from './services/carService';
 import { authServiceFactory } from './services/authService';
+import { useLocalStorage } from "./hooks/useLocalStorage";
 
 import { Footer } from './Components/Footer/Footer';
 import { Header } from './Components/Header/Header';
@@ -22,7 +23,7 @@ function App() {
   const navigate = useNavigate();
 
   const[cars,setCars] = useState([]);
-  const[auth,setAuth] = useState({});
+  const[auth,setAuth] = useLocalStorage('auth',{})
   const[error,setError] = useState();
   const carService = carServiceFactory(auth.accessToken);
   const authService = authServiceFactory(auth.accessToken);
