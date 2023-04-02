@@ -1,8 +1,8 @@
-import * as request from './requester';
+import * as requester from './requester';
 
 const baseUrl = `http://localhost:3030/users`;
 
 
-export const login = (data) => request.post(`${baseUrl}/login`, data);
-export const register = (data) => request.post(`${baseUrl}/register`, data);
-export const logout = () => request.get(`${baseUrl}/logout`);
+export const login = (data) => requester.post(`${baseUrl}/login`, data);
+export const register = (data) => requester.post(`${baseUrl}/register`, data);
+export const logout = () => requester.get(`${baseUrl}/logout`);
