@@ -26,7 +26,7 @@ const baseUrl = 'http://localhost:3030/data/cars';
 
     export  const edit = (carId,data) => request.put(`${baseUrl}/${carId}`,data);
 
-    export  const removeCar = (carId) => request.del(`${baseUrl}/${carId}`)
+    export  const removeCar = (carId) => request.del(`${baseUrl}/${carId}`);
 
 
     

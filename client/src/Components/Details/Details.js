@@ -2,12 +2,13 @@ import { useEffect, useState, useContext } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom'
 
 import * as carService from '../../services/carService';
-import { useService } from '../../hooks/useService';
 import { AuthContext } from '../../contexts/AuthContext';
+import { CarContext } from '../../contexts/CarContext';
 
 export const Details = () => {
 
     const {userId} = useContext(AuthContext);
+    const {onDeleteCar} = useContext(CarContext);
     const { carId } = useParams();
     const navigate = useNavigate();
     const [car, setCar] = useState({});
@@ -31,9 +32,10 @@ export const Details = () => {
         const isOwner = car._ownerId === userId;
         
         const onDeleteClick = async () => {
+
             await carService.removeCar(car._id);
     
-            // TODO: delete from state
+            onDeleteCar(car._id);
     
             navigate('/catalog');
         };

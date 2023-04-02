@@ -1,11 +1,11 @@
 import { useContext } from 'react';
-import { AuthContext } from '../../contexts/AuthContext';
+import { CarContext } from '../../contexts/CarContext';
 import { useForm } from '../../hooks/useForm';
 
 export const Create = () => {
 
-    const { onCreateCarsSubmit } = useContext(AuthContext);
-
+    const { onCreateCarsSubmit } = useContext(CarContext);
+    
     const {values,changeHandler,onSubmit} = useForm({
         model: '',
         type: '',
@@ -19,7 +19,7 @@ export const Create = () => {
     return (
         <section>
         <div className="container">
-        <form id="create" onSubmit={onSubmit}>
+        <form id="create" method="post" onSubmit={onSubmit}>
             <h2>Create a new Ad</h2>
 
             <label htmlFor="car-model">Car Model:</label>

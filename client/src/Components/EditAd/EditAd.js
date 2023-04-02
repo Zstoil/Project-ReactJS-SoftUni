@@ -1,6 +1,6 @@
 import { useContext, useEffect } from 'react';
 import { useParams } from 'react-router-dom'; 
-import { AuthContext } from '../../contexts/AuthContext';
+import { CarContext } from '../../contexts/CarContext';
 import { useForm } from '../../hooks/useForm';
 
 // import { useService } from '../../hooks/useService';
@@ -12,7 +12,7 @@ export const EditAd = () => {
 
     // const carService = useService(carServiceFactory);
 
-    const { onEditCarSubmit } = useContext(AuthContext);
+    const { onEditCarSubmit } = useContext(CarContext);
 
     const {values,changeHandler,onSubmit,changeValues} = useForm({
         _id: '',

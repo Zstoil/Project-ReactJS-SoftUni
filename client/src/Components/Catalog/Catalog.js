@@ -1,8 +1,12 @@
-import { CatalogItem } from "./CatalogItem/CatalogItem";
+import { useContext } from "react";
 
-export const Catalog = ({
-    cars,
-}) => {
+import { CatalogItem } from "./CatalogItem/CatalogItem";
+import { CarContext } from "../../contexts/CarContext";
+
+
+export const Catalog = () => {
+
+    const {cars} = useContext(CarContext);
     return (
         <div className="all-cars">
     <h2>All Cars</h2>
