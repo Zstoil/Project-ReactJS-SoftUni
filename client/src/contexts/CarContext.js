@@ -44,7 +44,7 @@ export const CarProvider = ({
    }
 
     const onDeleteCar = async (carId) => {
-        console.log(carId);
+        
         setCars(state => state.filter(car => car._id !== carId));
     }
 

@@ -18,3 +18,6 @@ export const create = async (carId, comment) => {
 
     return result;
 };
+
+export const deleteComment = async (id) => requester.del(`${baseUrl}/${id}`);
+

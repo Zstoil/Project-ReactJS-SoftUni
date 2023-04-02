@@ -52,12 +52,16 @@ export const Details = () => {
        
         const onCommentSubmit = async (values) => {
             const response = await commentsService.create(carId, values.comment);
-    
+
+            //  const date =  new Date().toLocaleString()
+             
+
             setCar(state => ({
                 ...state,
                 comments: [...state.comments, 
                     {
                      ...response,
+                    //  dateOnCreate: date, 
                      author: {
                         email,
                         userName
@@ -65,6 +69,17 @@ export const Details = () => {
                     }]
             })
             );
+        };
+console.log(car.comments);
+        const onDeleteComment = async (id) => {
+            
+         await commentsService.deleteComment(id);
+
+        setCar(state => ({
+            ...state,
+            comments: [...state.comments.filter(com => com._id !== id)]
+        }))
+            
         };
 
     return (
@@ -90,10 +105,13 @@ export const Details = () => {
                     <h4>Comments:</h4>
                     <ul >
                         {car.comments && car.comments.map(x => (
-                            
+                             
                             <li key={x._id} className="comment">
+                                {/* <time>{x.dateOnCreate}</time> */}
                                 <p>{x.author.userName}: {x.comment}</p>
-                                <span>x</span>
+                                {x.author._id === userId && (
+                                    <button onClick={() => onDeleteComment(x._id)}>x</button>
+                                )}
                             </li>
                         ))}
                     </ul>
