@@ -14,6 +14,7 @@ import { Register } from "./Components/Register/Register";
 import { Logout } from "./Components/Logout/Logout";
 import { EditAd } from "./Components/EditAd/EditAd";
 import { MyAdd } from "./Components/MyAdd/MyAdd";
+import { Search } from "./Components/Search/Search";
 
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
           <Route path='/' element={<Home/>} />
           <Route path='/create' element={<Create/>} />
           <Route path='/catalog' element={<Catalog/>} />
+          <Route path='/search' element={<Search/>} />
           <Route path="/catalog/:carId" element={<Details/>}/>
           <Route path="/myAdd" element={<MyAdd/>}/>
           <Route path="/catalog/:carId/edit" element={<EditAd/>}/>

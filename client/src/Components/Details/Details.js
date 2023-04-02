@@ -30,12 +30,14 @@ export const Details = () => {
     }, [carId]);
 
         // like button
-    // const [like, setLike] = useState(1),
-    //       [isLike, setIsLike] = useState(false),
-    //     onLikeButtonClick = () => {
-    //         setLike(like + (isLike ? -1 : 1));
-    //         setIsLike(!isLike);
-    //     };
+    const [like, setLike] = useState(0);
+    const [isLike, setIsLike] = useState(false);
+
+     const onLikeButtonClick = () => {
+            setLike(like + 1);
+            setIsLike(true);
+        };
+        console.log(like);
 
         const isOwner = car._ownerId === userId;
         
@@ -97,7 +99,8 @@ console.log(car.comments);
                 {isOwner && (
                     <div>
                     <Link to={`/catalog/${car._id}/edit`} className="details-btn-edit">Edit</Link>
-                    <button className="details-btn-del" onClick={onDeleteClick}>Delete</button>
+                    <Link className="details-btn-del" onClick={onDeleteClick}>Delete</Link>
+                    {!isLike && (<Link className='like-btn' onClick={onLikeButtonClick}>Like</Link>)}
                     </div>
                 )}
                 
@@ -121,13 +124,6 @@ console.log(car.comments);
                     )}
                 </div>
 
-                {/* like button */}
-                {/* <button
-                    className={"like-button " + (isLike ? "liked" : "")}
-                    onClick={onLikeButtonClick}
-                >
-                    {"Like"}  {like}
-                </button> */}
             </div>
             {isAuthenticated && <Comments onCommentSubmit={onCommentSubmit} />}
         </div>

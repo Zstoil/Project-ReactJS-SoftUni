@@ -280,7 +280,7 @@ h2{
     margin-bottom: 50px;
 }
 
-.details-btn-del,.details-btn-edit{
+.details-btn-del,.details-btn-edit,.like-btn{
     display: inline-block;
     color: black;
     background: linear-gradient(127.12deg, #ffffff 31.69%, #b3b6b8 73.96%);
