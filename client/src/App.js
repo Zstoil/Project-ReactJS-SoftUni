@@ -13,6 +13,7 @@ import { Login } from "./Components/Login/Login";
 import { Register } from "./Components/Register/Register";
 import { Logout } from "./Components/Logout/Logout";
 import { EditAd } from "./Components/EditAd/EditAd";
+import { MyAdd } from "./Components/MyAdd/MyAdd";
 
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
           <Route path='/create' element={<Create/>} />
           <Route path='/catalog' element={<Catalog/>} />
           <Route path="/catalog/:carId" element={<Details/>}/>
+          <Route path="/myAdd" element={<MyAdd/>}/>
           <Route path="/catalog/:carId/edit" element={<EditAd/>}/>
           <Route path="/login" element={<Login/>}/>
           <Route path="/register" element={<Register/>}/>

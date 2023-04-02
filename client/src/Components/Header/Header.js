@@ -31,6 +31,9 @@ export const Header = () => {
                 </nav>
                 {isAuthenticated && (
                     <div className='loginUser'>
+                        <div className='myAdd'>
+                            <Link to='/myAdd'>My Adds</Link>
+                        </div>
                         <span>{userName}</span>
                     </div>
                 )}
