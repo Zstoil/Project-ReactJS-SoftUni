@@ -1,4 +1,10 @@
+import { useEffect,useState } from 'react';
 import { Link } from 'react-router-dom'
+
+import * as likeService from '../../../services/likeService';
+import * as carService from '../../../services/carService';
+
+
 
 export const CatalogItem = ({
     _id,
@@ -8,7 +14,25 @@ export const CatalogItem = ({
     description,
     imageUrl,
     price,
+    
 }) => {
+
+    const[car,setCar]= useState({});
+
+
+  useEffect(() => {
+    Promise.all([
+        carService.getOne(_id),
+        likeService.getAllLike(_id),
+    ]).then(([carData, like]) => {
+        setCar({
+            ...carData,
+            like
+        });
+
+    });
+}, [_id]);
+    
     return (
         <div className="car">
             <div>
@@ -20,6 +44,7 @@ export const CatalogItem = ({
             <p>Price:{price} &#x20AC;</p>
             <p>Description:{description}</p>
             <Link  to={`/catalog/${_id}`} className="details-btn">Details</Link>
+            <span className='count-likes'>Likes:{car.like?.length}</span>
         </div>
     );
 }

@@ -225,6 +225,12 @@ h2{
     box-shadow: 0px 0px 40px 0px;
     padding: 20px;
     margin: 30px 30px 30px 30px ;
+    transition: transform .8s;
+}
+
+.car:hover{
+    transform: scale(1.1,1.1);
+    background: linear-gradient(223deg, #58779ef0 31.69%, #b3b6b8 73.96%);
 }
 
 .image{
@@ -379,7 +385,18 @@ h2{
     padding-top: 30px;
     box-shadow: 0px 0px 30px 0px #cc1d49, 0px 3px 24px #8995aa;
     border-radius: 10px;
+    /* animation: hideAnimation 0s ease-in 5s;
+    animation-fill-mode: forwards; */
 }
+
+  /* hide error container */
+  /* @keyframes hideAnimation {
+    to {
+      visibility: hidden;
+      width: 0;
+      height: 0;
+    }
+  } */
 
  /* Register */
 
@@ -473,3 +490,4 @@ h2{
     padding-left: 4px;
     background: linear-gradient(84deg, #b9bcc0a6 31.69%, #70757814 73.96%);
 }
+

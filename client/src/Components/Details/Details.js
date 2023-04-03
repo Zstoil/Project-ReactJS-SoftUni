@@ -2,87 +2,93 @@ import { useEffect, useState, useContext } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom'
 
 import * as carService from '../../services/carService';
+import * as commentsService from '../../services/commentsService';
+import * as likeService from '../../services/likeService';
+
 import { AuthContext } from '../../contexts/AuthContext';
 import { CarContext } from '../../contexts/CarContext';
-import * as commentsService  from '../../services/commentsService';
 
 import { Comments } from './Comments/Comments'
 
 export const Details = () => {
 
-    const {userId, isAuthenticated, userName, email} = useContext(AuthContext);
-    const {onDeleteCar} = useContext(CarContext);
+    const { userId, isAuthenticated, userName, email } = useContext(AuthContext);
+    const { onDeleteCar,likeCount } = useContext(CarContext);
     const { carId } = useParams();
     const navigate = useNavigate();
     const [car, setCar] = useState({});
    
+
     useEffect(() => {
         Promise.all([
             carService.getOne(carId),
             commentsService.getAll(carId),
-        ]).then(([carData, comments]) => {
+            likeService.getAllLike(carId),
+        ]).then(([carData, comments, like]) => {
             setCar({
                 ...carData,
                 comments,
+                like
             });
-            
+
         });
     }, [carId]);
 
-        // like button
-    const [like, setLike] = useState(0);
-    const [isLike, setIsLike] = useState(false);
-
-     const onLikeButtonClick = () => {
-            setLike(like + 1);
-            setIsLike(true);
-        };
-        console.log(like);
-
-        const isOwner = car._ownerId === userId;
+   
+   
+    // like button
+   
+   const onLikeClick = async () => {
         
-        const onDeleteClick = async () => {
+   const response = await likeService.like(carId,userId);
 
-            await carService.removeCar(car._id);
+   }
+  
     
-            onDeleteCar(car._id);
+    const isOwner = car._ownerId === userId;
+
+    const onDeleteClick = async () => {
+
+        await carService.removeCar(car._id);
+
+        onDeleteCar(car._id);
+
+        navigate('/catalog');
+    };
+
+    // comments
+
+    const onCommentSubmit = async (values) => {
+        const response = await commentsService.create(carId, values.comment);
+
+        //  const date =  new Date().toLocaleString()
+
+
+        setCar(state => ({
+            ...state,
+            comments: [...state.comments,
+            {
+                ...response,
+                //  dateOnCreate: date, 
+                author: {
+                    email,
+                    userName
+                }
+            }]
+        })
+        );
+    };
     
-            navigate('/catalog');
-        };
+    const onDeleteComment = async (id) => {
 
-        // comments
-       
-        const onCommentSubmit = async (values) => {
-            const response = await commentsService.create(carId, values.comment);
-
-            //  const date =  new Date().toLocaleString()
-             
-
-            setCar(state => ({
-                ...state,
-                comments: [...state.comments, 
-                    {
-                     ...response,
-                    //  dateOnCreate: date, 
-                     author: {
-                        email,
-                        userName
-                     } 
-                    }]
-            })
-            );
-        };
-console.log(car.comments);
-        const onDeleteComment = async (id) => {
-            
-         await commentsService.deleteComment(id);
+        await commentsService.deleteComment(id);
 
         setCar(state => ({
             ...state,
             comments: [...state.comments.filter(com => com._id !== id)]
         }))
-            
-        };
+
+    };
 
     return (
         <div className='details'>
@@ -97,18 +103,21 @@ console.log(car.comments);
                 <p>Price:{car.price} &#x20AC;</p>
                 <p>Description:{car.description}</p>
                 {isOwner && (
-                    <div>
-                    <Link to={`/catalog/${car._id}/edit`} className="details-btn-edit">Edit</Link>
-                    <Link className="details-btn-del" onClick={onDeleteClick}>Delete</Link>
-                    {!isLike && (<Link className='like-btn' onClick={onLikeButtonClick}>Like</Link>)}
-                    </div>
+                    <>
+                        <Link to={`/catalog/${car._id}/edit`} className="details-btn-edit">Edit</Link>
+                        <Link className="details-btn-del" onClick={onDeleteClick}>Delete</Link>
+                    </>
                 )}
+                    
+                    <Link className="like-btn" onClick={onLikeClick}>Like</Link>
+                    
                 
+
                 <div className="details-comments">
                     <h4>Comments:</h4>
                     <ul >
                         {car.comments && car.comments.map(x => (
-                             
+
                             <li key={x._id} className="comment">
                                 {/* <time>{x.dateOnCreate}</time> */}
                                 <p>{x.author.userName}: {x.comment}</p>
