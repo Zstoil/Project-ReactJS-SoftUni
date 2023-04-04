@@ -146,7 +146,7 @@ h1{
  }
  
  /* Create */
- #create input[type=text], select, textarea {
+ #create input[type=text],input[type=number], select, textarea {
     width: 100%;
     padding: 12px;
     border: 1px solid #ccc;
@@ -196,6 +196,23 @@ h1{
     padding: 20px;
   }
  
+  /* error message */
+
+  .form-error{
+    color: red;
+    font-style: italic;
+    background: #ffffff;
+  }
+
+  .submit-error{
+    background: linear-gradient(127.12deg, #ffffff 4.69%, #b3b6b8 73.96%);
+    color: rgb(250, 4, 4);
+    text-align: center;
+    font-size: 20px;
+    border: none;
+    border-radius: 4px;
+    
+  }
  
 /* Catalog */
 
