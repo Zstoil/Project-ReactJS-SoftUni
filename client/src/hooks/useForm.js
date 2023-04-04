@@ -1,9 +1,13 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+
+import { AuthContext } from '../contexts/AuthContext';
 
 export const useForm = (initialValues, onSubmitHandler) => {
     const [values, setValues] = useState(initialValues);
     const [formErrors, setFormErrors] = useState(initialValues);
     const [submitError,setSubmitError] = useState(null);
+
+    const { errors,setSubmitAuthError } = useContext(AuthContext)
 
     const changeHandler = (e) => {
         setValues(state => ({...state, [e.target.name]: e.target.value}));
@@ -11,6 +15,12 @@ export const useForm = (initialValues, onSubmitHandler) => {
 
     const onSubmit = (e) => {
         e.preventDefault();
+
+        // hide login/register error
+        if(!errors){
+            setSubmitAuthError()
+        }
+
         // empty input
         if(values.description === "" || values.imageUrl === "" || values.model === "" || values.price === "" || values.type === ""){
             setSubmitError('All input are require!')

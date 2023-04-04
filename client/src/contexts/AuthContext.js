@@ -62,11 +62,17 @@ export const AuthProvider = ({
         setAuth({});
     };
 
+    const setSubmitAuthError = () => {
+      setTimeout(() => {
+        setError(null)
+      }, "2000");
+    }
 
     const contextValues = {
         onLoginSubmit,
         onRegisterSubmit,
         onLogout,
+        setSubmitAuthError,
         userId: auth._id,
         token: auth.accessToken,
         userName: auth.userName,
