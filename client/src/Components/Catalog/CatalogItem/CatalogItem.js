@@ -44,7 +44,7 @@ export const CatalogItem = ({
             <p>Price:{price} &#x20AC;</p>
             <p>Description:{description}</p>
             <Link  to={`/catalog/${_id}`} className="details-btn">Details</Link>
-            <span className='count-likes'>Likes:{car.like?.length}</span>
+            <span className='count-likes'><span className='heart'>&#128153;</span>{car.like?.length}</span>
         </div>
     );
 }

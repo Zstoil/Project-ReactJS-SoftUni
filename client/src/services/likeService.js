@@ -17,6 +17,8 @@ export  const getAllLike = async (carId) => {
     const likes = Object.values(result);
 
     return likes;
+
+    
 };
 
 

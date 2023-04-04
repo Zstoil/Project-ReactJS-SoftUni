@@ -13,10 +13,10 @@ const request = async (method, url, data) => {
         }
     }
 
-    const serializedAuth = localStorage.getItem('auth');
+    const userData = localStorage.getItem('auth');
 
-    if (serializedAuth) {
-        const auth = JSON.parse(serializedAuth);
+    if (userData) {
+        const auth = JSON.parse(userData);
         
         if (auth.accessToken) {
             options.headers = {
@@ -30,6 +30,10 @@ const request = async (method, url, data) => {
 
     if (response.status === 204) {
         return {};
+    }
+
+    if(response.status === 403){
+        localStorage.removeItem("auth");
     }
 
     const result = await response.json();

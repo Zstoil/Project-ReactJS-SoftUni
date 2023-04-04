@@ -312,6 +312,14 @@ h2{
     color: #1565c0;
   }
 
+.heart{
+padding: 3px;
+font-size: 20px;
+}
+
+.count-likes{
+    margin-left: 70px;
+}
   /* Login */
 
   .login-container{

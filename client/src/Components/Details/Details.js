@@ -13,11 +13,12 @@ import { Comments } from './Comments/Comments'
 export const Details = () => {
 
     const { userId, isAuthenticated, userName, email } = useContext(AuthContext);
-    const { onDeleteCar,likeCount } = useContext(CarContext);
+    const { onDeleteCar } = useContext(CarContext);
     const { carId } = useParams();
     const navigate = useNavigate();
     const [car, setCar] = useState({});
-   
+
+
 
     useEffect(() => {
         Promise.all([
@@ -28,24 +29,33 @@ export const Details = () => {
             setCar({
                 ...carData,
                 comments,
-                like
+                like,
             });
 
         });
     }, [carId]);
 
-   
-   
-    // like button
-   
-   const onLikeClick = async () => {
-        
-   const response = await likeService.like(carId,userId);
 
-   }
-  
-    
+
+    // like button
+    const isLike = car.like?.find(x => x._ownerId == userId);
+
+    const onLikeClick = async () => {
+
+        const response = await likeService.like(carId, userId);
+
+        setCar(state => ({
+            ...state,
+            like: [...state.like,
+            {
+                ...response, 
+            }]
+        })
+        );
+    }
+
     const isOwner = car._ownerId === userId;
+    
 
     const onDeleteClick = async () => {
 
@@ -59,11 +69,10 @@ export const Details = () => {
     // comments
 
     const onCommentSubmit = async (values) => {
+
         const response = await commentsService.create(carId, values.comment);
 
         //  const date =  new Date().toLocaleString()
-
-
         setCar(state => ({
             ...state,
             comments: [...state.comments,
@@ -78,7 +87,7 @@ export const Details = () => {
         })
         );
     };
-    
+
     const onDeleteComment = async (id) => {
 
         await commentsService.deleteComment(id);
@@ -108,10 +117,12 @@ export const Details = () => {
                         <Link className="details-btn-del" onClick={onDeleteClick}>Delete</Link>
                     </>
                 )}
-                    
-                    <Link className="like-btn" onClick={onLikeClick}>Like</Link>
-                    
-                
+                {!isLike && (
+                    <Link className={'like-btn'} onClick={onLikeClick}>Like</Link>
+                )}
+
+
+                    {/* Comments */}
 
                 <div className="details-comments">
                     <h4>Comments:</h4>
@@ -121,7 +132,7 @@ export const Details = () => {
                             <li key={x._id} className="comment">
                                 {/* <time>{x.dateOnCreate}</time> */}
                                 <p>{x.author.userName}: {x.comment}</p>
-                                {x.author._id === userId && (
+                                {x._ownerId === userId && (
                                     <button onClick={() => onDeleteComment(x._id)}>x</button>
                                 )}
                             </li>
