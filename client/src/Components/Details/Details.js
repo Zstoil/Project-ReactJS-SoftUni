@@ -19,9 +19,9 @@ export const Details = () => {
     const { carId } = useParams();
     const navigate = useNavigate();
     const [car, setCar] = useState({});
-    const [areYouSure,SetAreYouSure] = useState(false);
-
+    const [showBlog,SetShowBlog] = useState(false);
     
+
     useEffect(() => {
         Promise.all([
             carService.getOne(carId),
@@ -57,6 +57,7 @@ export const Details = () => {
 
             if(isCurrentUnLike){
                 await unLikeService.deleteUnLike(isCurrentUnLike._id);
+                
             };
 
             setCar(state => ({
@@ -64,10 +65,10 @@ export const Details = () => {
                     like: [...state.like,
                     {
                        ...response, 
-                    }]
+                    }],
                 })
                 );
-        
+
     };
 
     // unLike button
@@ -92,7 +93,7 @@ export const Details = () => {
                 }]
             })
             );
-    
+
 };
 
     //delete car
@@ -107,11 +108,11 @@ export const Details = () => {
     };
 
     const onClose = () => {
-        SetAreYouSure(null);
+        SetShowBlog(null);
     }
 
     const showDeleteBlog = () => {
-        SetAreYouSure(true);
+        SetShowBlog(true);
     }
 
     // comments
@@ -206,7 +207,7 @@ export const Details = () => {
             </div>
             {isAuthenticated && <Comments onCommentSubmit={onCommentSubmit} />}
 
-            {areYouSure && <DeleteModal 
+            {showBlog && <DeleteModal 
             onClose={onClose} 
             onDeleteClick={onDeleteClick}
             car = {car}
