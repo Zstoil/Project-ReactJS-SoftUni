@@ -18,7 +18,7 @@ export const Details = () => {
     const { carId } = useParams();
     const navigate = useNavigate();
     const [car, setCar] = useState({});
-    const [areYouSure,SetAreYouSure] = useState(false)
+    const [areYouSure,SetAreYouSure] = useState(false);
 
     
     useEffect(() => {
@@ -152,7 +152,7 @@ export const Details = () => {
                                 <p>{x.author.userName}: {x.comment}</p>
                                 {x._ownerId === userId && (
                                     <div>
-                                    <button onClick={() => onDeleteComment(x._id)}>x</button>
+                                    <button className='del-comment' onClick={() => onDeleteComment(x._id)}>x</button>
                                     {/* <button onClick={() => onEditComment(x._id)}>Edit</button> */}
                                     </div>
                                 )}

@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { useParams, Outlet, Navigate } from 'react-router-dom';
+import { useParams, Navigate } from 'react-router-dom';
 
 import { AuthContext } from '../../contexts/AuthContext';
 import { CarContext } from "../../contexts/CarContext";
@@ -12,7 +12,7 @@ export const EditGuard = ({
     const { userId } =  useContext(AuthContext);
 
     const currentCar = getCar(carId);
-
+    
     if (currentCar && currentCar._ownerId !== userId) {
         return <Navigate to={`/catalog/${carId}`}/>
     }

@@ -11,7 +11,7 @@ export const AuthProvider = ({
     children,
 }) => {
 
-    const[auth,setAuth] = useLocalStorage('auth',{})
+    const[auth,setAuth] = useLocalStorage('auth',{});
     const[error,setError] = useState();
     const navigate = useNavigate();
 

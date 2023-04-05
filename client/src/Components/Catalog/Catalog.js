@@ -12,7 +12,6 @@ export const Catalog = () => {
     <h2>All Cars</h2>
     <div className="gallery">
         
-        
        {cars.map(x => <CatalogItem key={x._id} {...x} />)}
 
         {cars.length === 0 && (

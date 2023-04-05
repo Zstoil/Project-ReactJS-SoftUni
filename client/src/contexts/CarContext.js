@@ -26,7 +26,7 @@ export const CarProvider = ({
 
     const newCar = await carService.create(data);
  
-     //set new game in catalog
+     //set new car in catalog
      setCars(state => [...state, newCar]);
  
      //redirect  to catalog

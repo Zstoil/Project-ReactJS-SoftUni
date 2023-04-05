@@ -3,6 +3,7 @@ import { useState, useContext } from 'react';
 import { AuthContext } from '../contexts/AuthContext';
 
 export const useForm = (initialValues, onSubmitHandler) => {
+    
     const [values, setValues] = useState(initialValues);
     const [formErrors, setFormErrors] = useState(initialValues);
     const [submitError,setSubmitError] = useState(null);
@@ -36,7 +37,6 @@ export const useForm = (initialValues, onSubmitHandler) => {
     };
 
     const changeValues = (newValues) => {
-        // TODO: Validate newValues shape (like initialValues)
         
         setValues(newValues);
     };
