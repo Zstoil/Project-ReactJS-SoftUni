@@ -305,8 +305,7 @@ h2{
     margin-bottom: 50px;
 }
 
-.details-btn-del,.details-btn-edit,.like-btn{
-    display: inline-block;
+.details-btn-del,.details-btn-edit,.like-btn,.unLike-btn {
     color: black;
     background: linear-gradient(127.12deg, #ffffff 31.69%, #b3b6b8 73.96%);
     padding: 12px 40px;
@@ -314,18 +313,13 @@ h2{
     border-radius: 10px;
     margin-top: 20px;
     margin-right: 15px;
+    margin-bottom: 15px;
 }
 
-.like-button {
+.like-btn, .unLike-btn {
     font-size: 1rem;
-    padding: 10px 25px;
-    color:  #000000;
-    margin-left: 650px;
-    background: linear-gradient(127.12deg, #ffffff 31.69%, #b3b6b8 73.96%);
-    box-shadow: 0px 2px 6px rgba(214, 214, 214, 0.55);
-    border-radius: 10px;
-
 }
+
 .liked {
     font-weight: bold;
     color: #1565c0;
@@ -338,6 +332,10 @@ font-size: 20px;
 
 .count-likes{
     margin-left: 70px;
+}
+
+.car-like{
+    display: flex;
 }
 
 /* message for delete car */
@@ -523,7 +521,7 @@ font-size: 20px;
     background: white;
     border-radius: 10px;
     padding: 2px;
-    margin-top: 10px;
+    margin-top: 40px;
     margin-bottom: 10px;
 }
 

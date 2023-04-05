@@ -1367,7 +1367,10 @@
         },
         like: {
 
-        }
+        },
+        unLike: {
+
+        },
     };
     var rules$1 = {
         users: {

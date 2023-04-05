@@ -4,6 +4,7 @@ import { useParams, useNavigate, Link } from 'react-router-dom'
 import * as carService from '../../services/carService';
 import * as commentsService from '../../services/commentsService';
 import * as likeService from '../../services/likeService';
+import * as unLikeService from '../../services/unLikeService';
 
 import { AuthContext } from '../../contexts/AuthContext';
 import { CarContext } from '../../contexts/CarContext';
@@ -26,11 +27,13 @@ export const Details = () => {
             carService.getOne(carId),
             commentsService.getAll(carId),
             likeService.getAllLike(carId),
-        ]).then(([carData, comments, like]) => {
+            unLikeService.getAllUnLike(carId),
+        ]).then(([carData, comments, like, unLike]) => {
             setCar({
                 ...carData,
                 comments,
                 like,
+                unLike,
             });
 
         });
@@ -39,6 +42,8 @@ export const Details = () => {
     const isOwner = car._ownerId === userId;
 
     const isLike = car.like?.find(x => x._ownerId == userId);
+
+    const isUnLike = car.unLike?.find(x => x._ownerId == userId);
 
     // like button
     
@@ -56,6 +61,23 @@ export const Details = () => {
                 );
         
     };
+
+    // unLike button
+
+    const onUnLikeClick = async () => {
+        
+        const response = await unLikeService.unLike(carId, userId);
+
+        setCar(state => ({
+                 ...state,
+                 unLike: [...state.unLike,
+                {
+                   ...response, 
+                }]
+            })
+            );
+    
+};
 
     //delete car
     const onDeleteClick = async () => {
@@ -136,7 +158,10 @@ export const Details = () => {
                     </>
                 )}
                 {!isLike && (
-                    <Link className={'like-btn'} onClick={onLikeClick}>Like</Link>
+                    <Link className='like-btn' onClick={onLikeClick}>Like</Link>
+                )}
+                {!isUnLike && (
+                    <Link className='unLike-btn' onClick={onUnLikeClick}>unLike</Link>
                 )}
 
 
