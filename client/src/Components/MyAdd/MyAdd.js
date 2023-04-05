@@ -16,11 +16,6 @@ export const MyAdd = () => {
             });
     },[]);
 
-
-
-    
-   
-
     return (
         <div>
         <h2>My Adds</h2>

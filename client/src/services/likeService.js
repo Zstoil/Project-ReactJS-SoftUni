@@ -19,5 +19,7 @@ export const getAllLike = async (carId) => {
     return likes;
 };
 
+export  const deleteLike = (likeId) => requester.del(`${baseUrl}/${likeId}`);
+
 
 

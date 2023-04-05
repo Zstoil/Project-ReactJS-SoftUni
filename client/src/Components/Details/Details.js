@@ -51,6 +51,14 @@ export const Details = () => {
         
             const response = await likeService.like(carId, userId);
 
+            const isUnLike = await unLikeService.getAllUnLike(carId, userId);
+
+            const isCurrentUnLike = isUnLike.find(x => x._ownerId === userId);
+
+            if(isCurrentUnLike){
+                await unLikeService.deleteUnLike(isCurrentUnLike._id);
+            };
+
             setCar(state => ({
                      ...state,
                     like: [...state.like,
@@ -67,6 +75,14 @@ export const Details = () => {
     const onUnLikeClick = async () => {
         
         const response = await unLikeService.unLike(carId, userId);
+
+        const isLike = await likeService.getAllLike(carId, userId);
+
+            const isCurrentLike = isLike.find(x => x._ownerId === userId);
+
+            if(isCurrentLike){
+                await likeService.deleteLike(isCurrentLike._id);
+            };
 
         setCar(state => ({
                  ...state,
@@ -104,13 +120,11 @@ export const Details = () => {
 
         const response = await commentsService.create(carId, values.comment);
 
-        //  const date =  new Date().toLocaleString()
         setCar(state => ({
             ...state,
             comments: [...state.comments,
             {
-                ...response,
-                //  dateOnCreate: date, 
+                ...response, 
                 author: {
                     email,
                     userName
@@ -173,7 +187,6 @@ export const Details = () => {
                         {car.comments && car.comments.map(x => (
 
                             <li key={x._id} className="comment">
-                                {/* <time>{x.dateOnCreate}</time> */}
                                 <p>{x.author.userName}: {x.comment}</p>
                                 {x._ownerId === userId && (
                                     <div>
