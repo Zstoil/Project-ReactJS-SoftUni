@@ -1364,6 +1364,9 @@
         },
         comments: {
         
+        },
+        like: {
+
         }
     };
     var rules$1 = {
