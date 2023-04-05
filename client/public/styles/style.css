@@ -86,7 +86,7 @@ a {
 }
 
 
-h1{
+.home>h1{
     font-family: 'Marck Script', cursive;
     font-size: 6.428rem;/*90px*/
     color: #000000;
@@ -562,3 +562,13 @@ font-size: 20px;
     background: linear-gradient(84deg, #b9bcc0a6 31.69%, #70757814 73.96%);
 }
 
+/* 404 */
+
+.not-found{
+margin-left:400;
+}
+
+.not-found>h1{
+   font-size: 150px; 
+   margin-left:645px;
+}

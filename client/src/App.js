@@ -15,7 +15,9 @@ import { Logout } from "./Components/Logout/Logout";
 import { EditAd } from "./Components/EditAd/EditAd";
 import { MyAdd } from "./Components/MyAdd/MyAdd";
 import { Search } from "./Components/Search/Search";
-
+import { RouteGuard } from "./Components/RouteGuard/RouteGuard";
+import { EditGuard } from "./Components/RouteGuard/EditGuard";
+import { NotFound } from "./Components/404/NotFound";
 
 function App() {
 
@@ -28,16 +30,24 @@ function App() {
      <main id="main-content">
      <Routes>
           <Route path='/' element={<Home/>} />
-          <Route path='/create' element={<Create/>} />
+          
           <Route path='/catalog' element={<Catalog/>} />
           <Route path='/search' element={<Search/>} />
           <Route path="/catalog/:carId" element={<Details/>}/>
-          <Route path="/myAdd" element={<MyAdd/>}/>
-          <Route path="/catalog/:carId/edit" element={<EditAd/>}/>
           <Route path="/login" element={<Login/>}/>
           <Route path="/register" element={<Register/>}/>
           <Route path="/logout" element={<Logout/>}/>
-          
+          <Route element= {<RouteGuard/>}>
+              <Route path='/create' element={<Create/>} />
+              <Route path="/myAdd" element={<MyAdd/>}/>
+              
+              <Route path="/catalog/:carId/edit" element={
+                <EditGuard>
+                    <EditAd/>
+                </EditGuard>
+              }/>
+          </Route>
+          <Route path="*" element={<NotFound/>}/>
     </Routes>
      </main>
      <Footer/>

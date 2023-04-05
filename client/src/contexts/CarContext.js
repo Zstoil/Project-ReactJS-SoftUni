@@ -49,11 +49,16 @@ export const CarProvider = ({
     }
 
     
+    const getCar = (carId) => {
+      return cars.find(car => car._id === carId);
+   };
+
 
    const contextValues = {
     onCreateCarsSubmit,
     onEditCarSubmit,
     onDeleteCar,
+    getCar,
     cars,
 };
 

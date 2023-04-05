@@ -71,8 +71,6 @@ export const AuthProvider = ({
     }
 
     
-
-
     const contextValues = {
         onLoginSubmit,
         onRegisterSubmit,
