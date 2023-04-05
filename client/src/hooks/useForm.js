@@ -15,7 +15,7 @@ export const useForm = (initialValues, onSubmitHandler) => {
 
     const onSubmit = (e) => {
         e.preventDefault();
-
+        
         // hide login/register error
         if(!errors){
             setSubmitAuthError()

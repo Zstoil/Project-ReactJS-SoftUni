@@ -58,7 +58,9 @@ export const AuthProvider = ({
        const onLogout = async () => {
     
        await authService.logout();
-    
+
+        localStorage.clear();
+
         setAuth({});
     };
 
@@ -67,6 +69,9 @@ export const AuthProvider = ({
         setError(null)
       }, "2000");
     }
+
+    
+
 
     const contextValues = {
         onLoginSubmit,

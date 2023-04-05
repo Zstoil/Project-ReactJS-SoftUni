@@ -14,7 +14,6 @@ export const CatalogItem = ({
     description,
     imageUrl,
     price,
-    
 }) => {
 
     const[car,setCar]= useState({});

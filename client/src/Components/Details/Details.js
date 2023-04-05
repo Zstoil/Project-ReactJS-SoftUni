@@ -9,6 +9,7 @@ import { AuthContext } from '../../contexts/AuthContext';
 import { CarContext } from '../../contexts/CarContext';
 
 import { Comments } from './Comments/Comments'
+import { DeleteModal } from './DeleteModal/DeleteModal';
 
 export const Details = () => {
 
@@ -17,9 +18,9 @@ export const Details = () => {
     const { carId } = useParams();
     const navigate = useNavigate();
     const [car, setCar] = useState({});
+    const [areYouSure,SetAreYouSure] = useState(false)
 
-
-
+    
     useEffect(() => {
         Promise.all([
             carService.getOne(carId),
@@ -35,36 +36,45 @@ export const Details = () => {
         });
     }, [carId]);
 
+    const isOwner = car._ownerId === userId;
 
-
-    // like button
     const isLike = car.like?.find(x => x._ownerId == userId);
 
-    const onLikeClick = async () => {
-
-        const response = await likeService.like(carId, userId);
-
-        setCar(state => ({
-            ...state,
-            like: [...state.like,
-            {
-                ...response, 
-            }]
-        })
-        );
-    }
-
-    const isOwner = car._ownerId === userId;
+    // like button
     
+    const onLikeClick = async () => {
+        
+            const response = await likeService.like(carId, userId);
 
+            setCar(state => ({
+                     ...state,
+                    like: [...state.like,
+                    {
+                       ...response, 
+                    }]
+                })
+                );
+        
+    };
+
+    //delete car
     const onDeleteClick = async () => {
-
+       
         await carService.removeCar(car._id);
 
         onDeleteCar(car._id);
 
-        navigate('/catalog');
+        navigate('/catalog'); 
+        
     };
+
+    const onClose = () => {
+        SetAreYouSure(null);
+    }
+
+    const showDeleteBlog = () => {
+        SetAreYouSure(true);
+    }
 
     // comments
 
@@ -87,6 +97,12 @@ export const Details = () => {
         })
         );
     };
+    // const onEditComment = async (id) => {
+
+    //  const result = await commentsService.editComment(id);
+
+    //  console.log(result);
+    // }
 
     const onDeleteComment = async (id) => {
 
@@ -98,6 +114,8 @@ export const Details = () => {
         }))
 
     };
+
+    
 
     return (
         <div className='details'>
@@ -114,7 +132,7 @@ export const Details = () => {
                 {isOwner && (
                     <>
                         <Link to={`/catalog/${car._id}/edit`} className="details-btn-edit">Edit</Link>
-                        <Link className="details-btn-del" onClick={onDeleteClick}>Delete</Link>
+                        <Link className="details-btn-del" onClick={showDeleteBlog}>Delete</Link>
                     </>
                 )}
                 {!isLike && (
@@ -133,7 +151,10 @@ export const Details = () => {
                                 {/* <time>{x.dateOnCreate}</time> */}
                                 <p>{x.author.userName}: {x.comment}</p>
                                 {x._ownerId === userId && (
+                                    <div>
                                     <button onClick={() => onDeleteComment(x._id)}>x</button>
+                                    {/* <button onClick={() => onEditComment(x._id)}>Edit</button> */}
+                                    </div>
                                 )}
                             </li>
                         ))}
@@ -146,6 +167,14 @@ export const Details = () => {
 
             </div>
             {isAuthenticated && <Comments onCommentSubmit={onCommentSubmit} />}
+
+            {areYouSure && <DeleteModal 
+            onClose={onClose} 
+            onDeleteClick={onDeleteClick}
+            car = {car}
+            />}
         </div>
+
+        
     );
 }

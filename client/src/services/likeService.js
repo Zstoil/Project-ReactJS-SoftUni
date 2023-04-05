@@ -9,16 +9,15 @@ export const like = async (carId, userId) => {
     return result;
 };
 
-export  const getAllLike = async (carId) => {
+export const getAllLike = async (carId) => {
     const searchQuery = encodeURIComponent(`carId="${carId}"`);
     const relationQuery = encodeURIComponent(`author=_ownerId:users`);
 
     const result = await requester.get(`${baseUrl}?where=${searchQuery}&load=${relationQuery}`);
     const likes = Object.values(result);
-
-    return likes;
-
     
+    return likes;
 };
+
 
 
