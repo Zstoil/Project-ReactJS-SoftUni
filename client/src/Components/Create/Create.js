@@ -1,3 +1,5 @@
+import "./Create.css"
+
 import { useContext } from 'react';
 import { CarContext } from '../../contexts/CarContext';
 import { useForm } from '../../hooks/useForm';

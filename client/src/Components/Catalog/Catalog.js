@@ -1,3 +1,5 @@
+import "./Catalog.css";
+
 import { useContext } from "react";
 
 import { CatalogItem } from "./CatalogItem/CatalogItem";

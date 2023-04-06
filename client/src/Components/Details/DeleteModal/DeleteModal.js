@@ -1,3 +1,4 @@
+import "./DeleteModal.css";
 
 export const DeleteModal = ({
  car,

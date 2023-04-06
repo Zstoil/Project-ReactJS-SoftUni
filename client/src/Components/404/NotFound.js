@@ -1,3 +1,5 @@
+import "./404.css";
+
 export const NotFound = () => {
     return(
         <div className="not-found">

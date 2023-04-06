@@ -1,3 +1,5 @@
+import "./EditAd.css";
+
 import { useContext, useEffect, Navigate} from 'react';
 import { useParams } from 'react-router-dom';
 

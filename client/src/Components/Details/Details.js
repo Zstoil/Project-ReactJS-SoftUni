@@ -1,3 +1,5 @@
+import "./Details.css";
+
 import { useEffect, useState, useContext } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom'
 

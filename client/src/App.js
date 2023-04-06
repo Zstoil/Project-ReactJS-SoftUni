@@ -30,7 +30,6 @@ function App() {
      <main id="main-content">
      <Routes>
           <Route path='/' element={<Home/>} />
-          
           <Route path='/catalog' element={<Catalog/>} />
           <Route path='/search' element={<Search/>} />
           <Route path="/catalog/:carId" element={<Details/>}/>
@@ -46,6 +45,7 @@ function App() {
                     <EditAd/>
                 </EditGuard>
               }/>
+              
           </Route>
           <Route path="*" element={<NotFound/>}/>
     </Routes>

@@ -1,3 +1,5 @@
+import "./Register.css";
+
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 
@@ -18,7 +20,7 @@ export const Register = () => {
         <section className="register-page">
 
             {isError && (
-                <div className='loginError'>
+                <div className='registerError'>
                     <p>{error}</p>
                 </div>
             )}
