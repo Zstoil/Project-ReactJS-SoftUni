@@ -44,9 +44,9 @@ export const Details = () => {
     const isOwner = car._ownerId === userId;
 
     const isLike = car.like?.find(x => x._ownerId == userId);
-
+console.log("IS Like" + isLike);
     const isUnLike = car.unLike?.find(x => x._ownerId == userId);
-
+console.log("IS UNLIKE" + isUnLike);
     // like button
     
     const onLikeClick = async () => {
@@ -56,11 +56,14 @@ export const Details = () => {
             const isUnLike = await unLikeService.getAllUnLike(carId, userId);
 
             const isCurrentUnLike = isUnLike.find(x => x._ownerId === userId);
-
+        
             if(isCurrentUnLike){
+
                 await unLikeService.deleteUnLike(isCurrentUnLike._id);
                 
             };
+
+            const newUnLike = await unLikeService.getAllUnLike(carId, userId);
 
             setCar(state => ({
                      ...state,
@@ -68,16 +71,18 @@ export const Details = () => {
                     {
                        ...response, 
                     }],
+                    unLike: [...newUnLike]
                 })
                 );
 
     };
 
+
     // unLike button
 
     const onUnLikeClick = async () => {
         
-        const response = await unLikeService.unLike(carId, userId);
+        const responseUnlike = await unLikeService.unLike(carId, userId);
 
         const isLike = await likeService.getAllLike(carId, userId);
 
@@ -87,12 +92,15 @@ export const Details = () => {
                 await likeService.deleteLike(isCurrentLike._id);
             };
 
+        const newLike = await likeService.getAllLike(carId, userId);
+
         setCar(state => ({
                  ...state,
                  unLike: [...state.unLike,
                 {
-                   ...response, 
-                }]
+                   ...responseUnlike, 
+                }],
+                like: [...newLike],
             })
             );
 
