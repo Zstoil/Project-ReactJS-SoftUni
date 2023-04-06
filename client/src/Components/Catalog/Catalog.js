@@ -7,7 +7,7 @@ import { CarContext } from "../../contexts/CarContext";
 
 
 export const Catalog = () => {
-
+       
     const {cars} = useContext(CarContext);
     return (
         <div className="all-cars">
