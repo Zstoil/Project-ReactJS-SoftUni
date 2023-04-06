@@ -32,7 +32,7 @@ export const useForm = (initialValues, onSubmitHandler) => {
         }
 
         // edit comment error
-        if (values.comment.length <= 1 || values.comment.length > 200) {
+        if (values.comment && (values.comment.length <= 1 || values.comment.length > 200)) {
             setSubmitError('The comment should be between 2 and 200 characters');
 
             setTimeout(() => {
