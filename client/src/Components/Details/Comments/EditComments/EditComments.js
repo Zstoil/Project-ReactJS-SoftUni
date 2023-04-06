@@ -12,29 +12,36 @@ export const EditComments = ({
 }
 ) => {
 
-    const {values, changeHandler,onSubmit,changeValues} = useForm({
-        _id : "",
+    const { values, changeHandler, onSubmit, changeValues, submitError } = useForm({
+        _id: "",
         comment: "",
 
-    },onEditCommentSubmit);
+    }, onEditCommentSubmit);
 
     useEffect(() => {
         commentsService.getOne(editCommentId)
             .then(result => {
                 changeValues(result);
             });
-    },[editCommentId]); 
+    }, [editCommentId]);
 
-    return(
-        
+    return (
+
         <article className="edit-comment">
             <label>Edit comment:</label>
             <form onSubmit={onSubmit}>
-                <textarea name="comment"  value={values.comment} onChange={changeHandler}></textarea>
+                <textarea name="comment" value={values.comment} onChange={changeHandler}></textarea>
                 <input type="submit" value="Edit Comment" />
                 <button className="edit-comment-btn" type="button" onClick={onCloseEdit}>Cancel</button>
             </form>
+
+            {submitError &&
+                <p className="error-comment">
+                    {submitError}
+                </p>
+            }
         </article>
+
 
     );
 };

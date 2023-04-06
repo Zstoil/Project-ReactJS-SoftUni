@@ -17,13 +17,12 @@ export const useForm = (initialValues, onSubmitHandler) => {
     const onSubmit = (e) => {
         e.preventDefault();
         
-        // hide login/register error
         if(!errors){
             setSubmitAuthError()
         }
 
         // empty input
-        if(values.description === "" || values.imageUrl === "" || values.model === "" || values.price === "" || values.type === ""){
+        if(values.description === "" || values.imageUrl === "" || values.model === "" || values.price === "" || values.type === "" ){
             setSubmitError('All input are require!')
 
             setTimeout(() => {
@@ -31,6 +30,17 @@ export const useForm = (initialValues, onSubmitHandler) => {
               }, "2000");
             return
         }
+
+        // edit comment error
+        if (values.comment.length <= 1 || values.comment.length > 200) {
+            setSubmitError('The comment should be between 2 and 200 characters');
+
+            setTimeout(() => {
+                setSubmitError(null)
+              }, "2000");
+            return
+        }
+
         onSubmitHandler(values);
 
         setValues(initialValues);
@@ -63,9 +73,11 @@ export const useForm = (initialValues, onSubmitHandler) => {
         if (e.target.name === 'price' && (value < 0 )) {
             errors.price = 'The price should be positive number';
         }
-        if (e.target.name === 'description' && (value.length < 0 || value.length > 200)) {
+        if (e.target.name === 'description' && (value.length <= 0 || value.length > 200)) {
             errors.description = 'The description should be between 0 and 200 characters';
         }
+
+       
         setFormErrors(errors);
     };
 

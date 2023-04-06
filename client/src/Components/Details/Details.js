@@ -148,8 +148,8 @@ export const Details = () => {
         })
         );
     };
-    // edit comments
 
+    // edit comments
 
     const onEditCommentSubmit = async (value) => {
 
@@ -178,6 +178,7 @@ export const Details = () => {
         SetShowEditCommentBlog(null);
     }
 
+    // delete comments
 
     const onDeleteComment = async (id) => {
 
