@@ -1,0 +1,16 @@
+.edit-comment{
+    box-shadow: 0px 0px 40px 0px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 100;
+    width: 45rem;
+    height: 200px;
+    margin: auto;
+    border-radius: 20px;
+    background-color: #c0c4c3;
+    padding: 1rem;
+    margin-top: 850px;
+}

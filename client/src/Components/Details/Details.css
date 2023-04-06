@@ -75,12 +75,13 @@
     background: linear-gradient(84deg, #b9bcc0a6 31.69%, #70757814 73.96%);
 }
 
-.del-comment{
-    padding: 5px;
+.edit-del-comment{
+    padding-left: 10px;
+    padding-right: 10px;
     margin-top: 8px;
     margin-right: 6px;
-    background-color: #636060;
-    border-radius: 50px;
-    color: white;
     cursor: pointer;
+    border: none;
+    background: linear-gradient(84deg, #b9bcc0a6 31.69%, #70757814 73.96%);
+    border-radius: 10px;
 }

@@ -13,6 +13,7 @@ import { CarContext } from '../../contexts/CarContext';
 
 import { Comments } from './Comments/Comments'
 import { DeleteModal } from './DeleteModal/DeleteModal';
+import { EditComments } from "./Comments/EditComments/EditComments";
 
 export const Details = () => {
 
@@ -21,8 +22,10 @@ export const Details = () => {
     const { carId } = useParams();
     const navigate = useNavigate();
     const [car, setCar] = useState({});
-    const [showBlog,SetShowBlog] = useState(false);
-    
+    const [showBlog, SetShowBlog] = useState(false);
+    const [showEditCommentBlog, SetShowEditCommentBlog] = useState(false);
+    const [editCommentId, SetEditCommentId] = useState();
+
 
     useEffect(() => {
         Promise.all([
@@ -44,82 +47,83 @@ export const Details = () => {
     const isOwner = car._ownerId === userId;
 
     const isLike = car.like?.find(x => x._ownerId == userId);
-console.log("IS Like" + isLike);
+
     const isUnLike = car.unLike?.find(x => x._ownerId == userId);
-console.log("IS UNLIKE" + isUnLike);
+
     // like button
-    
+
     const onLikeClick = async () => {
-        
-            const response = await likeService.like(carId, userId);
 
-            const isUnLike = await unLikeService.getAllUnLike(carId, userId);
+        const response = await likeService.like(carId, userId);
 
-            const isCurrentUnLike = isUnLike.find(x => x._ownerId === userId);
-        
-            if(isCurrentUnLike){
+        const isUnLike = await unLikeService.getAllUnLike(carId, userId);
 
-                await unLikeService.deleteUnLike(isCurrentUnLike._id);
-                
-            };
+        const isCurrentUnLike = isUnLike.find(x => x._ownerId === userId);
 
-            const newUnLike = await unLikeService.getAllUnLike(carId, userId);
+        if (isCurrentUnLike) {
 
-            setCar(state => ({
-                     ...state,
-                    like: [...state.like,
-                    {
-                       ...response, 
-                    }],
-                    unLike: [...newUnLike]
-                })
-                );
+            await unLikeService.deleteUnLike(isCurrentUnLike._id);
 
+        };
+
+        const newUnLike = await unLikeService.getAllUnLike(carId, userId);
+
+        setCar(state => ({
+            ...state,
+            like: [...state.like,
+            {
+                ...response,
+            }],
+            unLike: [...newUnLike]
+        })
+        );
     };
 
 
     // unLike button
 
     const onUnLikeClick = async () => {
-        
+
         const responseUnlike = await unLikeService.unLike(carId, userId);
 
         const isLike = await likeService.getAllLike(carId, userId);
 
-            const isCurrentLike = isLike.find(x => x._ownerId === userId);
+        const isCurrentLike = isLike.find(x => x._ownerId === userId);
 
-            if(isCurrentLike){
-                await likeService.deleteLike(isCurrentLike._id);
-            };
+        if (isCurrentLike) {
+            await likeService.deleteLike(isCurrentLike._id);
+        };
 
         const newLike = await likeService.getAllLike(carId, userId);
 
         setCar(state => ({
-                 ...state,
-                 unLike: [...state.unLike,
-                {
-                   ...responseUnlike, 
-                }],
-                like: [...newLike],
-            })
-            );
+            ...state,
+            unLike: [...state.unLike,
+            {
+                ...responseUnlike,
+            }],
+            like: [...newLike],
+        })
+        );
 
-};
+    };
 
     //delete car
     const onDeleteClick = async () => {
-       
+
         await carService.removeCar(car._id);
 
         onDeleteCar(car._id);
 
-        navigate('/catalog'); 
-        
+        navigate('/catalog');
+
     };
 
     const onClose = () => {
         SetShowBlog(null);
+        SetShowEditCommentBlog(null);
     }
+
 
     const showDeleteBlog = () => {
         SetShowBlog(true);
@@ -135,7 +139,7 @@ console.log("IS UNLIKE" + isUnLike);
             ...state,
             comments: [...state.comments,
             {
-                ...response, 
+                ...response,
                 author: {
                     email,
                     userName
@@ -144,12 +148,36 @@ console.log("IS UNLIKE" + isUnLike);
         })
         );
     };
-    // const onEditComment = async (id) => {
+    // edit comments
 
-    //  const result = await commentsService.editComment(id);
 
-    //  console.log(result);
-    // }
+    const onEditCommentSubmit = async (value) => {
+
+        const responseEditComment = await commentsService.editComment(editCommentId, value);
+
+
+        const newComments = await commentsService.getAll(carId);
+
+        setCar(state => ({
+            ...state,
+            comments: [...newComments]
+        }))
+
+        SetShowEditCommentBlog(null);
+    }
+
+    const showEditBlog = (editCommentId) => {
+
+        SetEditCommentId(editCommentId);
+        SetShowEditCommentBlog(true);
+
+    }
+
+    const onCloseEdit = () => {
+
+        SetShowEditCommentBlog(null);
+    }
+
 
     const onDeleteComment = async (id) => {
 
@@ -162,7 +190,6 @@ console.log("IS UNLIKE" + isUnLike);
 
     };
 
-    
 
     return (
         <div className='details'>
@@ -190,7 +217,7 @@ console.log("IS UNLIKE" + isUnLike);
                 )}
 
 
-                    {/* Comments */}
+                {/* Comments */}
 
                 <div className="details-comments">
                     <h4>Comments:</h4>
@@ -201,8 +228,8 @@ console.log("IS UNLIKE" + isUnLike);
                                 <p>{x.author.userName}: {x.comment}</p>
                                 {x._ownerId === userId && (
                                     <div>
-                                    <button className='del-comment' onClick={() => onDeleteComment(x._id)}>x</button>
-                                    {/* <button onClick={() => onEditComment(x._id)}>Edit</button> */}
+                                        <button className='edit-del-comment' onClick={() => showEditBlog(x._id)}>Edit</button>
+                                        <button className='edit-del-comment' onClick={() => onDeleteComment(x._id)}>x</button>
                                     </div>
                                 )}
                             </li>
@@ -217,13 +244,20 @@ console.log("IS UNLIKE" + isUnLike);
             </div>
             {isAuthenticated && <Comments onCommentSubmit={onCommentSubmit} />}
 
-            {showBlog && <DeleteModal 
-            onClose={onClose} 
-            onDeleteClick={onDeleteClick}
-            car = {car}
+            {showEditCommentBlog && <EditComments
+                onCloseEdit={onCloseEdit}
+                onEditCommentSubmit={onEditCommentSubmit}
+                editCommentId={editCommentId}
+            />}
+
+
+            {showBlog && <DeleteModal
+                onClose={onClose}
+                onDeleteClick={onDeleteClick}
+                car={car}
             />}
         </div>
 
-        
+
     );
 }
