@@ -211,13 +211,18 @@ export const Details = () => {
                         <Link className="details-btn-del" onClick={showDeleteBlog}>Delete</Link>
                     </>
                 )}
-                {!isLike && (
+                {isAuthenticated ? 
+                !isLike && (
                     <button className="react-icon-like"  onClick={onLikeClick}><BsHandThumbsUpFill/><span>Like</span></button>
-                )}
-
-                {!isUnLike && (
+                ) : "" }
+                
+                {isAuthenticated ?
+                !isUnLike && (
                    <button className="react-icon-unLike" onClick={onUnLikeClick}><BsHandThumbsDownFill/><span>UnLike</span></button> 
-                )}
+                ) : "" }
+                 
+                
+               
 
 
                 {/* Comments */}
