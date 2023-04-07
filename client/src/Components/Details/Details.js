@@ -1,5 +1,6 @@
 import "./Details.css";
 
+import { BsHandThumbsUpFill ,BsHandThumbsDownFill} from "react-icons/bs";
 import { useEffect, useState, useContext } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom'
 
@@ -203,7 +204,7 @@ export const Details = () => {
                 <p>Type:{car.type}</p>
                 <p>Kilometers:{car.kilometers} km</p>
                 <p>Price:{car.price} &#x20AC;</p>
-                <p>Description:{car.description}</p>
+                <p className="details-description">Description:{car.description}</p>
                 {isOwner && (
                     <>
                         <Link to={`/catalog/${car._id}/edit`} className="details-btn-edit">Edit</Link>
@@ -211,10 +212,11 @@ export const Details = () => {
                     </>
                 )}
                 {!isLike && (
-                    <Link className='like-btn' onClick={onLikeClick}>Like</Link>
+                    <button className="react-icon-like"  onClick={onLikeClick}><BsHandThumbsUpFill/><span>Like</span></button>
                 )}
+
                 {!isUnLike && (
-                    <Link className='unLike-btn' onClick={onUnLikeClick}>unLike</Link>
+                   <button className="react-icon-unLike" onClick={onUnLikeClick}><BsHandThumbsDownFill/><span>UnLike</span></button> 
                 )}
 
 
