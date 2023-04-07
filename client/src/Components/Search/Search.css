@@ -1,0 +1,49 @@
+
+.search-h1{
+text-align: center;
+margin-bottom: 50px;
+font-size: 35px;
+}
+
+.filter{
+    margin-left: 250px;
+}
+
+.search-value{
+padding: 21px;
+width: 700px;
+
+padding-top: 23px;
+
+}
+
+.criteria{
+    padding: 22px;
+    width: 300px;
+    font-size: 13px;
+    
+    
+}
+
+.criteria>option{
+    font-size: 17px;
+   
+}
+
+/* .search-submit{
+    padding: 21px;
+    width: 200px;
+    
+    padding-top: 23px;
+   
+} */
+
+.all-cars-search{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    grid-template-rows: repeat(1,1fr);
+    gap: 30px;
+    width: 100%;
+    height: 100hv;
+    margin-top: 100px;
+}

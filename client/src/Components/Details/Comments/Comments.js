@@ -9,11 +9,11 @@ export const Comments = ({
     const { values, changeHandler, onSubmit, submitError } = useForm({
         comment: ''
     }, onCommentSubmit);
-console.log(submitError);
+
     return (
         <article className="create-comment">
-            <label>Add new comment:</label>
-            <form onSubmit={onSubmit}>
+            <label><h3>Add new comment:</h3></label>
+            <form className="create-comment-form" onSubmit={onSubmit}>
                 <textarea 
                 name="comment" 
                 placeholder="Comment......" 

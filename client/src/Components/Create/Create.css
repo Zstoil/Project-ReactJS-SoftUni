@@ -1,4 +1,4 @@
-#create input[type=text],input[type=number], select, textarea {
+#create>input[type=text],#create>input[type=number], #create>select, #create>textarea {
     width: 100%;
     padding: 12px;
     border: 1px solid #ccc;
@@ -18,7 +18,7 @@
     color: #fffbdb;
   }
 
- #create input[type=submit] {
+ #create>input[type=submit] {
     background: linear-gradient(127.12deg, #ffffff 4.69%, #b3b6b8 73.96%);
     color: rgb(0, 0, 0);
     text-align: center;
@@ -31,7 +31,7 @@
    
   }
   
-  input[type=submit]:hover {
+  #create>input[type=submit]:hover {
     background: linear-gradient(127.12deg, #b4b1b1 4.69%, #5a5b5b 73.96%);
   }
   

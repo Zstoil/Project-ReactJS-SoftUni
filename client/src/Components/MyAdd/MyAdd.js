@@ -22,7 +22,7 @@ export const MyAdd = () => {
         <div>
         <h2>My Adds</h2>
         <div className="gallery">
-            
+           
         {adds.map(x => <CatalogItem key={x._id} {...x} />)}
 
         {adds.length === 0 && (

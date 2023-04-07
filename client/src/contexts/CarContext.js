@@ -10,14 +10,14 @@ export const CarProvider = ({
 }) => {
 
     const navigate = useNavigate();
-    const[cars,setCars] = useState([]);
-  
-  
-
+    const [cars,setCars] = useState([]);
+    const [filteredCars,setFilteredCars] = useState([]);
+    
   useEffect(() =>{
     carService.getAll()
       .then(result => {
-        setCars(result)
+        setCars(result);
+        setFilteredCars(result);
       })
   },[]);
 
@@ -54,12 +54,26 @@ export const CarProvider = ({
    };
 
 
+    const filterCars = (text,criteria = "all") => {
+
+      if(criteria === "all"){
+        setFilteredCars(cars);
+      }else{
+        setFilteredCars(cars.filter(x => x[criteria].toLowerCase()?.includes(text.toLowerCase())))
+      }
+
+     }
+
+
    const contextValues = {
     onCreateCarsSubmit,
     onEditCarSubmit,
     onDeleteCar,
+    filterCars,
     getCar,
     cars,
+    filteredCars,
+    
 };
 
 return(

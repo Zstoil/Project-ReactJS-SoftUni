@@ -13,7 +13,7 @@
     font-family: 'Roboto', sans-serif;
   }
 
-  .login-container input[type=submit]{
+  .login-container>input[type=submit]{
     display: inline;
     background: linear-gradient(127.12deg, #ffffff 4.69%, #b3b6b8 73.96%);
     color: rgb(0, 0, 0);

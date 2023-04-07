@@ -28,10 +28,10 @@ export const EditComments = ({
     return (
 
         <article className="edit-comment">
-            <label>Edit comment:</label>
-            <form onSubmit={onSubmit}>
+            <label><h3>Edit comment:</h3></label>
+            <form className="edit-comment-form" onSubmit={onSubmit}>
                 <textarea name="comment" value={values.comment} onChange={changeHandler}></textarea>
-                <input type="submit" value="Edit Comment" />
+                <input type="submit" className="edit-comment-submit" value="Edit Comment" />
                 <button className="edit-comment-btn" type="button" onClick={onCloseEdit}>Cancel</button>
             </form>
 
