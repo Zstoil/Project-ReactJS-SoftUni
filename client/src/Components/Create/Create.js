@@ -46,11 +46,11 @@ export const Create = () => {
                     <label htmlFor="Type">Type:</label>
                     <select value={values.type} onChange={changeHandler} id="type" name="type">
                         <option value="" disabled selected>Select your option</option>
-                        <option value="diesel">Diesel</option>
-                        <option value="gasoline">Gasoline</option>
-                        <option value="gas">Gas</option>
-                        <option value="hybrid">Hybrid</option>
-                        <option value="electric">Electric</option>
+                        <option value="Diesel">Diesel</option>
+                        <option value="Gasoline">Gasoline</option>
+                        <option value="Gas">Gas</option>
+                        <option value="Hybrid">Hybrid</option>
+                        <option value="Electric">Electric</option>
                     </select>
 
                     <label htmlFor="kilometers">Kilometers:</label>

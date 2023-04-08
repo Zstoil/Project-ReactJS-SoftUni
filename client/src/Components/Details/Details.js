@@ -203,7 +203,7 @@ export const Details = () => {
                 <p>Model:{car.model}</p>
                 <p>Type:{car.type}</p>
                 <p>Kilometers:{car.kilometers} km</p>
-                <p>Price:{car.price} &#x20AC;</p>
+                <p>Price:<span className="price">{car.price} &#x20AC;</span> </p>
                 <p className="details-description">Description:{car.description}</p>
                 {isOwner && (
                     <>

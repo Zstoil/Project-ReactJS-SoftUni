@@ -14,7 +14,7 @@ export const CatalogItem = ({
     model,
     type,
     kilometers,
-    description,
+    // description,
     imageUrl,
     price,
 }) => {
@@ -42,11 +42,11 @@ export const CatalogItem = ({
             <div>
                 <img className="image" src={imageUrl}/>
             </div>
-            <p>Model:{model}</p>
-            <p>Type:{type}</p>
-            <p>Kilometers:{kilometers} km</p>
-            <p>Price:{price} &#x20AC;</p>
-            <p>Description:{description}</p>
+            <p>Model: {model}</p>
+            <p>Type: {type}</p>
+            <p>Kilometers: {kilometers} km</p>
+            <p>Price: <span className="price">{price} &#x20AC;</span></p>
+            {/* <p>Description:{description}</p> */}
             <div className='car-like'>
             <Link  to={`/catalog/${_id}`} className="details-btn">Details</Link>
             <span className='heart count-likes'> &#128153; {car.like?.length}</span> 

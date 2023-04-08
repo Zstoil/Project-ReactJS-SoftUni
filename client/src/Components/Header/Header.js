@@ -36,7 +36,7 @@ export const Header = () => {
                 {isAuthenticated && (
                     <div className='loginUser'>
                         <div className='myAdd'>
-                            <Link to='/myAdd'>My Adds</Link>
+                            <Link to='/myAd'>My Ads</Link>
                         </div>
                         <span>{userName}</span>
                     </div>

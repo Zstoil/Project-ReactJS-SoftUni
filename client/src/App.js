@@ -13,7 +13,7 @@ import { Login } from "./Components/Login/Login";
 import { Register } from "./Components/Register/Register";
 import { Logout } from "./Components/Logout/Logout";
 import { EditAd } from "./Components/EditAd/EditAd";
-import { MyAdd } from "./Components/MyAdd/MyAdd";
+import { MyAd } from "./Components/MyAd/MyAd";
 import { Search } from "./Components/Search/Search";
 import { RouteGuard } from "./Components/RouteGuard/RouteGuard";
 import { EditGuard } from "./Components/RouteGuard/EditGuard";
@@ -38,7 +38,7 @@ function App() {
           <Route path="/logout" element={<Logout/>}/>
           <Route element= {<RouteGuard/>}>
               <Route path='/create' element={<Create/>} />
-              <Route path="/myAdd" element={<MyAdd/>}/>
+              <Route path="/myAd" element={<MyAd/>}/>
               
               <Route path="/catalog/:carId/edit" element={
                 <EditGuard>

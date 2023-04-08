@@ -53,7 +53,7 @@ export const CarProvider = ({
       return cars.find(car => car._id === carId);
    };
 
-
+// search cars
     const filterCars = (text,criteria = "all") => {
 
       if(criteria === "all"){

@@ -12,7 +12,7 @@ export const Search = () => {
     const [search,setSearch] = useState("");
     const [criteria,setCriteria] = useState("all");
 
-    const onChangeModel = (e) => {
+    const onChangeSearch = (e) => {
         setSearch(e.target.value);
         filterCars(e.target.value,criteria)
     }
@@ -38,7 +38,7 @@ export const Search = () => {
                 value={search}
                 className="search-value"
                 placeholder="Search....."
-                onChange={onChangeModel}
+                onChange={onChangeSearch}
                 ></input>
                 <select name="type" className="criteria" value={criteria} onChange={onChangeType}>
                     <option value="" >Select your option</option>
