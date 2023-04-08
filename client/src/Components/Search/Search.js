@@ -41,7 +41,7 @@ export const Search = () => {
                 onChange={onChangeSearch}
                 ></input>
                 <select name="type" className="criteria" value={criteria} onChange={onChangeType}>
-                    <option value="" >Select your option</option>
+                    <option value="all" disabled selected >Select your option</option>
                     <option value="model">Model</option>
                     <option value="type">Type</option>
                     <option value="kilometers">Kilometers</option>
