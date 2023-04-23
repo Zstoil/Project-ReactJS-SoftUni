@@ -70,7 +70,7 @@ export const useForm = (initialValues, onSubmitHandler) => {
         if (e.target.name === 'imageUrl' && !(validUrl.exec(value))) {
             errors.imageUrl = 'The imageUrl should be start with http/s';
         }
-        if (e.target.name === 'price' && (value < 0)) {
+        if (e.target.name === 'price' && (value <= 0)) {
             errors.price = 'The price should be positive number';
         }
         if (e.target.name === 'description' && (value.length <= 0 || value.length > 200)) {
