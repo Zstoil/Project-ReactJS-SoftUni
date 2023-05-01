@@ -8,6 +8,7 @@ import { baseUrl } from '../utils/baseUrl';
 
 const url = `${baseUrl}/data/cars`;
 
+
   export  const getAll = async () => {
         const result = await requester.get(url);
 
@@ -17,6 +18,7 @@ const url = `${baseUrl}/data/cars`;
     };
 
     export  const create = async (carData) => {
+        
         const result = await requester.post(url, carData);
 
         return result;

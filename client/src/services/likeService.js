@@ -11,16 +11,16 @@ export const like = async (carId, userId) => {
 };
 
 export const getAllLike = async (carId) => {
-    const searchQuery = encodeURIComponent(`carId="${carId}"`);
-    const relationQuery = encodeURIComponent(`author=_ownerId:users`);
 
-    const result = await requester.get(`${url}?where=${searchQuery}&load=${relationQuery}`);
-    const likes = Object.values(result);
+    const likes = await requester.get(`${url}/${carId}`);
     
     return likes;
 };
 
-export  const deleteLike = (likeId) => requester.del(`${url}/${likeId}`);
+export  const deleteLike = async (likeId,carId) =>{
+    
+    await requester.del(`${url}/${likeId}`,{carId});
+} 
 
 
 

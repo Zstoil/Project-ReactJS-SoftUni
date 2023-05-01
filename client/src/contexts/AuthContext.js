@@ -24,6 +24,7 @@ export const AuthProvider = ({
     
           navigate('/');
       } catch (error) {
+
         const result = await Object.values(error)[1];
     
         setError(result);

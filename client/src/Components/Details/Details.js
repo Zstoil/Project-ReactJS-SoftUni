@@ -58,12 +58,12 @@ export const Details = () => {
         const response = await likeService.like(carId, userId);
 
         const isUnLike = await unLikeService.getAllUnLike(carId, userId);
-
+       
         const isCurrentUnLike = isUnLike.find(x => x._ownerId === userId);
-
+ 
         if (isCurrentUnLike) {
 
-            await unLikeService.deleteUnLike(isCurrentUnLike._id);
+            await unLikeService.deleteUnLike(isCurrentUnLike._id,carId);
 
         };
 
@@ -92,7 +92,7 @@ export const Details = () => {
         const isCurrentLike = isLike.find(x => x._ownerId === userId);
 
         if (isCurrentLike) {
-            await likeService.deleteLike(isCurrentLike._id);
+            await likeService.deleteLike(isCurrentLike._id, carId);
         };
 
         const newLike = await likeService.getAllLike(carId, userId);
@@ -183,7 +183,7 @@ export const Details = () => {
 
     const onDeleteComment = async (id) => {
 
-        await commentsService.deleteComment(id);
+        await commentsService.deleteComment(id,carId);
 
         setCar(state => ({
             ...state,
@@ -233,7 +233,7 @@ export const Details = () => {
                         {car.comments && car.comments.map(x => (
 
                             <li key={x._id} className="comment">
-                                <p>{x.author.userName}: {x.comment}</p>
+                                <p>{x.userName}: {x.comment}</p> 
                                 {x._ownerId === userId && (
                                     <div>
                                         <button className='edit-del-comment' onClick={() => showEditBlog(x._id)}>Edit</button>
